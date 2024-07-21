@@ -7,7 +7,7 @@ from SnapScrib import video
 class Video:
     _file_path: str
     _name: str = None
-    video_data: bytes = None
+    video_data: cv2.VideoCapture = None
     length: float = 0
 
     @property
