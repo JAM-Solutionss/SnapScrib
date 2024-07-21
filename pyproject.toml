@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 moviepy = "^1.0.3"
+opencv-python = "^4.10.0.84"
 
 
 [build-system]
