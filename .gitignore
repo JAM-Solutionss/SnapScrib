@@ -1,3 +1,18 @@
+# Video files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+
+# Audio files
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aac
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
