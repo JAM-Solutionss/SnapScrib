@@ -1,26 +1,26 @@
 import platform
-from transcribe_mlx import transcribe as mlx
-from transcribe_with_lightning_mlx import transcribe as lightning
-from transcribe_whisper import transcribe_audio as whisper
+from .transcribe_mlx import transcribe as mlx
+from .transcribe_with_lightning_mlx import transcribe as lightning
+from .transcribe_whisper import transcribe_audio as whisper
 
-def check_os():
+def check_os(path, filename):
     system = platform.system()
     if system == "Darwin":
         print("This system is running macOS.")
         choose = input("Choose 1: mlx or 2: lightning mlx: ")
         if choose == "1":
-            mlx()
+            mlx(path, filename)
         else:
-            lightning()
+            lightning(path, filename)
 
             
     elif system == "Windows":
         print("This system is running Windows.")
-        whisper("audio.ogg")
+        whisper(path, filename)
 
     elif system == "Linux":
         print("This system is running Linux.")
-        whisper("audio.ogg")
+        whisper(path, filename)
 
     else:
         print("Unknown operating system.")

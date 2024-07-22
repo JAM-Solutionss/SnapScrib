@@ -6,9 +6,9 @@ import json
 
 
 
-def transcribe():
+def transcribe(path, filename):
     path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
-    speech_file = "audio.ogg"
+    speech_file = path
     print("transcribing....")
     result = mlx_whisper.transcribe(speech_file ,word_timestamps=True)
     text = result["text"]
@@ -25,7 +25,7 @@ def transcribe():
         segmentId = segment['id']+1
         segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] == ' ' else text}\n\n"
 
-        srtFilename = os.path.join("SrtFiles", f"VIDEO_FILENAME.srt")
+        srtFilename = os.path.join("transcription/SrtFiles", f"{filename}.srt")
         with open(srtFilename, 'a', encoding='utf-8') as srtFile:
             srtFile.write(segment)
         segment_dict = {
@@ -40,7 +40,7 @@ def transcribe():
     return srtFilename
 
 def writefile(input):
-    file_path = "json_files/transcription_mlx.json"
+    file_path = "transcription/json_files/transcription.json"
     with open(file_path, "w") as file:
         json.dump(input, file, indent=2)
     
