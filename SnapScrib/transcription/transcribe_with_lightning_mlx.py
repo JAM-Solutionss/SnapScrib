@@ -12,7 +12,9 @@ def transcribe(path, filename):
     result = whisper.transcribe(path)
     #print(result["segments"])
     srt_content = (create_srt(result["segments"]))
-    srtFilename = os.path.join("transcription/SrtFiles", f"{filename}.srt")
+    srt_directory = os.path.join("transcription", "SrtFiles")
+    os.makedirs(srt_directory, exist_ok=True)
+    srtFilename = os.path.join(srt_directory, f"{filename}.srt")
     with open(srtFilename, 'a', encoding='utf-8') as srtFile:
         srtFile.write(srt_content)
     
@@ -54,8 +56,11 @@ def create_srt(transcription):
 
 def writefile_json(input):
     print("Writing JSON file to OS...")
-    file_path = "transcription/json_files/transcription.json"
-    with open(file_path, "w") as file:
+
+    json_directory = os.path.join("transcription", "json_files")
+    os.makedirs(json_directory, exist_ok=True)
+    jsonFilename = os.path.join(json_directory, f"transcription.json")
+    with open(jsonFilename, "w") as file:
         json.dump(input, file, indent=2)
     
     

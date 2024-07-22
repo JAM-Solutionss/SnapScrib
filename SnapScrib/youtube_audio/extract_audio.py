@@ -4,7 +4,7 @@ import os
 def download_youtube_video_as_audio(url):
     try:
         # Set up yt-dlp options
-        output_path = "./output"
+        output_path = "./youtube_audio/output"
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{

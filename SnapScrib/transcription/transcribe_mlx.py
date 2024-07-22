@@ -25,7 +25,9 @@ def transcribe(path, filename):
         segmentId = segment['id']+1
         segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] == ' ' else text}\n\n"
 
-        srtFilename = os.path.join("transcription/SrtFiles", f"{filename}.srt")
+        srt_directory = os.path.join("transcription", "SrtFiles")
+        os.makedirs(srt_directory, exist_ok=True)
+        srtFilename = os.path.join(srt_directory, f"{filename}.srt")
         with open(srtFilename, 'a', encoding='utf-8') as srtFile:
             srtFile.write(segment)
         segment_dict = {
@@ -39,13 +41,15 @@ def transcribe(path, filename):
 
     return srtFilename
 
+
 def writefile(input):
-    file_path = "transcription/json_files/transcription.json"
-    with open(file_path, "w") as file:
-        json.dump(input, file, indent=2)
-    
     print("Writing JSON file to OS...")
 
+    json_directory = os.path.join("transcription", "json_files")
+    os.makedirs(json_directory, exist_ok=True)
+    jsonFilename = os.path.join(json_directory, f"transcription.json")
+    with open(jsonFilename, "w") as file:
+        json.dump(input, file, indent=2)
 
 if __name__ == "__main__":
     transcribe()
