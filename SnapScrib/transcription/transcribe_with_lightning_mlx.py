@@ -1,4 +1,3 @@
-from lightning_whisper_mlx import LightningWhisperMLX
 from datetime import timedelta
 import json
 import os
@@ -7,6 +6,7 @@ import os
 
 
 def transcribe(path, filename):
+    from lightning_whisper_mlx import LightningWhisperMLX
     print("transcribing....")
     whisper = LightningWhisperMLX(model="distil-large-v3", batch_size=12, quant=None)
     result = whisper.transcribe(path)
