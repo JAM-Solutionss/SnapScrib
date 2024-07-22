@@ -40,7 +40,7 @@ def transcribe():
     return srtFilename
 
 def writefile(input):
-    file_path = "transcription_mlx.json"
+    file_path = "json_files/transcription_mlx.json"
     with open(file_path, "w") as file:
         json.dump(input, file, indent=2)
     
