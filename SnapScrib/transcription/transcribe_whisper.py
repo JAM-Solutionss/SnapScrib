@@ -2,11 +2,16 @@ from datetime import timedelta
 import os
 import whisper
 import json
+import torch
 
 def transcribe_audio(path, filename):
-    model = whisper.load_model("base") # Change this to your desired model
+    torch.cuda.init()
+    device = "cuda"
+
+    model = whisper.load_model("base").to(device=device) # Change this to your desired model
     print("Whisper model loaded.")
-    transcribe = model.transcribe(audio=path)
+    with torch.cuda.device(device):
+        transcribe = model.transcribe(audio=path)
     segments = transcribe['segments']
 
 
