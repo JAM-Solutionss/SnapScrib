@@ -1,9 +1,10 @@
 import platform
-from .transcribe_mlx import transcribe as mlx
-from .transcribe_with_lightning_mlx import transcribe as lightning
-from .transcribe_whisper import transcribe_audio as whisper
+
 
 def check_os(path, filename):
+    from .transcribe_mlx import transcribe as mlx
+    from .transcribe_with_lightning_mlx import transcribe as lightning
+    from .transcribe_whisper import transcribe_audio as whisper
     system = platform.system()
     if system == "Darwin":
         print("This system is running macOS.")
