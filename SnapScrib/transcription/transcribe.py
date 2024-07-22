@@ -1,6 +1,7 @@
 import platform
 from transcribe_mlx import transcribe as mlx
 from transcribe_with_lightning_mlx import transcribe as lightning
+from transcribe_whisper import transcribe_audio as whisper
 
 def check_os():
     system = platform.system()
@@ -15,8 +16,12 @@ def check_os():
             
     elif system == "Windows":
         print("This system is running Windows.")
+        whisper("audio.ogg")
+
     elif system == "Linux":
         print("This system is running Linux.")
+        whisper("audio.ogg")
+
     else:
         print("Unknown operating system.")
 
