@@ -5,6 +5,7 @@
 *.wmv
 *.flv
 *.mkv
+*.webm
 
 # Audio files
 *.mp3
@@ -12,6 +13,7 @@
 *.ogg
 *.flac
 *.aac
+*.m4a
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
