@@ -1,9 +1,6 @@
 import streamlit as st
 from backend.modules.css import load_css
 
-
-
-
 # Pages
 home = st.Page(
     "frontend/pages/home.py",
