@@ -1,7 +1,8 @@
 from datetime import timedelta
 import os
 import json
-from logger_config import LOGGERimport sys
+from logger_config import LOGGER
+import sys
 if sys.platform == 'darwin':
     import mlx_whisper
 
