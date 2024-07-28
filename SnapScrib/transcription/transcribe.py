@@ -1,5 +1,7 @@
+from logging import Logger
 import sys
 from .transcribe_whisper import transcribe_audio as whisper
+from logger_config import LOGGER
 
 if sys.platform == 'darwin':
     from .transcribe_mlx import transcribe as mlx
@@ -9,7 +11,8 @@ if sys.platform == 'darwin':
 def check_os(path, filename):
     system = sys.platform
     if system == "darwin":
-        print("This system is running macOS.")
+        LOGGER.info("This system is running macOS.")
+        Logger.debug("Choosing transcription method...")
         choose = input("Choose 1: mlx or 2: lightning mlx: ")
         if choose == "1":
             mlx(path, filename)
@@ -18,15 +21,15 @@ def check_os(path, filename):
 
             
     elif system == "win32":
-        print("This system is running Windows.")
+        LOGGER.info("This system is running Windows.")
         whisper(path, filename)
 
     elif system == "linux":
-        print("This system is running Linux.")
+        LOGGER.info("This system is running Linux.")
         whisper(path, filename)
 
     else:
-        print("Unknown operating system.")
+        LOGGER.error("Unknown operating system.")
 
 
 

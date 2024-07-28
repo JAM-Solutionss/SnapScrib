@@ -3,13 +3,14 @@ import os
 import whisper
 import json
 import torch
+from logger_config import LOGGER
 
 def transcribe_audio(path, filename):
     torch.cuda.init()
     device = "cuda"
 
     model = whisper.load_model("base").to(device=device) # Change this to your desired model
-    print("Whisper model loaded.")
+    LOGGER.info("Whisper model loaded.")
     with torch.cuda.device(device):
         transcribe = model.transcribe(audio=path)
     segments = transcribe['segments']
@@ -40,7 +41,7 @@ def transcribe_audio(path, filename):
     return srtFilename
 
 def writefile(input):
-    print("Writing JSON file to OS...")
+    LOGGER.info("Writing JSON file to OS...")
 
     json_directory = os.path.join("transcription", "json_files")
     os.makedirs(json_directory, exist_ok=True)

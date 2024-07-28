@@ -1,7 +1,7 @@
 from datetime import timedelta
 import os
 import json
-
+from logger_config import LOGGER
 
 
 
@@ -9,10 +9,10 @@ def transcribe(path, filename):
     import mlx_whisper
     path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
     speech_file = path
-    print("transcribing....")
+    LOGGER.info("transcribing....")
     result = mlx_whisper.transcribe(speech_file ,word_timestamps=True)
     text = result["text"]
-    print(text)
+    LOGGER.debu(text)
     segments = result['segments']
 
 
@@ -43,7 +43,7 @@ def transcribe(path, filename):
 
 
 def writefile(input):
-    print("Writing JSON file to OS...")
+    LOGGER.info("Writing JSON file to OS...")
 
     json_directory = os.path.join("transcription", "json_files")
     os.makedirs(json_directory, exist_ok=True)
