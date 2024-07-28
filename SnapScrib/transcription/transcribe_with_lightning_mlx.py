@@ -2,12 +2,14 @@ from datetime import timedelta
 import json
 import os
 from logger_config import LOGGER 
+import sys
+if sys.platform == 'darwin':
+    from lightning_whisper_mlx import LightningWhisperMLX
 
 
 
 
 def transcribe(path, filename):
-    from lightning_whisper_mlx import LightningWhisperMLX
     LOGGER.info("transcribing....")
     whisper = LightningWhisperMLX(model="distil-large-v3", batch_size=12, quant=None)
     result = whisper.transcribe(path)
