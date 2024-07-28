@@ -1,12 +1,13 @@
 from datetime import timedelta
 import os
 import json
-
+import sys
+if sys.platform == 'darwin':
+    import mlx_whisper
 
 
 
 def transcribe(path, filename):
-    import mlx_whisper
     path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
     speech_file = path
     print("transcribing....")
