@@ -25,7 +25,7 @@ def transcribe(path, filename):
 
 def convert_millis(millis):
     """Convert milliseconds to hh:mm:ss,ms format."""
-    LOGGER.infoo("Converting milliseconds to hh:mm:ss,ms format...")
+    LOGGER.info("Converting milliseconds to hh:mm:ss,ms format...")
     seconds = (millis / 1000) % 60
     minutes = (millis / (1000 * 60)) % 60
     hours = (millis / (1000 * 60 * 60)) % 24
