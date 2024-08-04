@@ -1,25 +1,22 @@
 from datetime import timedelta
 import os
+import whisper
 import json
-from logger_config import LOGGER
-import sys
-if sys.platform == 'darwin':
-    import mlx_whisper
+import torch
+from src.backend.utils.logger_config import LOGGER
 
+def transcribe_audio(path, filename):
+    torch.cuda.init()
+    device = "cuda"
 
-
-def transcribe(path, filename):
-    path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
-    speech_file = path
-    LOGGER.info("transcribing....")
-    result = mlx_whisper.transcribe(speech_file ,word_timestamps=True)
-    text = result["text"]
-    LOGGER.debu(text)
-    segments = result['segments']
+    model = whisper.load_model("base").to(device=device) # Change this to your desired model
+    LOGGER.info("Whisper model loaded.")
+    with torch.cuda.device(device):
+        transcribe = model.transcribe(audio=path)
+    segments = transcribe['segments']
 
 
     json_output = []
-
     for segment in segments:
         startTime = str(0)+str(timedelta(seconds=int(segment['start'])))+',000'
         endTime = str(0)+str(timedelta(seconds=int(segment['end'])))+',000'
@@ -43,7 +40,6 @@ def transcribe(path, filename):
 
     return srtFilename
 
-
 def writefile(input):
     LOGGER.info("Writing JSON file to OS...")
 
@@ -52,7 +48,10 @@ def writefile(input):
     jsonFilename = os.path.join(json_directory, f"transcription.json")
     with open(jsonFilename, "w") as file:
         json.dump(input, file, indent=2)
+    
+  
+
+
 
 if __name__ == "__main__":
-    transcribe()
-    #print(save)
+    transcribe_audio("audio.ogg")

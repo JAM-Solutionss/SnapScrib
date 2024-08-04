@@ -1,6 +1,6 @@
 from transcription.transcribe import check_os
 from youtube_audio.extract_audio import download_youtube_video_as_audio
-from logger_config import LOGGER
+from src.backend.utils.logger_config import LOGGER
 
 
 

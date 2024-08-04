@@ -1,6 +1,6 @@
 import yt_dlp
 import os
-from logger_config import LOGGER
+from src.backend.utils.logger_config import LOGGER
 
 def download_youtube_video_as_audio(url):
     try:

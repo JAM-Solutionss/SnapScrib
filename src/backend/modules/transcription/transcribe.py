@@ -1,7 +1,7 @@
 from logging import Logger
 import sys
 from .transcribe_whisper import transcribe_audio as whisper
-from logger_config import LOGGER
+from src.backend.utils.logger_config import LOGGER
 
 if sys.platform == 'darwin':
     from .transcribe_mlx import transcribe as mlx

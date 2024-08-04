@@ -1,7 +1,7 @@
 from datetime import timedelta
 import json
 import os
-from logger_config import LOGGER 
+from src.backend.utils.logger_config import LOGGER 
 import sys
 if sys.platform == 'darwin':
     from lightning_whisper_mlx import LightningWhisperMLX
