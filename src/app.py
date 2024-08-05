@@ -1,5 +1,9 @@
 import streamlit as st
-from src.backend.config.css import load_css
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+from backend.config.css import load_css
 
 # Pages
 home = st.Page(

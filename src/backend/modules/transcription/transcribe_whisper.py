@@ -3,7 +3,11 @@ import os
 import whisper
 import json
 import torch
-from src.backend.utils.logger_config import LOGGER  # Korrigierter Import
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
+from logger_config import LOGGER
+
 
 def transcribe_audio(path, filename):
     torch.cuda.init()

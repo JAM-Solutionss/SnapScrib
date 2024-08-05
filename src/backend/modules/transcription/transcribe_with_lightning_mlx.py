@@ -2,7 +2,9 @@ from datetime import timedelta
 import json
 import os
 import sys
-from src.backend.utils.logger_config import LOGGER  # Korrigierter Import
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
+from logger_config import LOGGER
 
 if sys.platform == 'darwin':
     from lightning_whisper_mlx import LightningWhisperMLX
