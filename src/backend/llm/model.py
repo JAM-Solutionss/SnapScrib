@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from test_llm import test_text
 
 load_dotenv()
-GROQ_API_KEY = os.getenv('GROQ_API_KEY2')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
 def summarize(text):
     sys_msg = (
@@ -23,7 +23,7 @@ def summarize(text):
 
     try:
         response = Groq(api_key=GROQ_API_KEY).chat.completions.create(
-            messages=message, model='llama-3.1-8b-instant'
+            messages=message, model='llama-3.1-70b-versatile'
         )
         
         if hasattr(response, 'choices') and len(response.choices) > 0:
