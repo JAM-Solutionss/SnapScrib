@@ -6,7 +6,7 @@ from test_llm import test_text
 load_dotenv()
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
-def gpt(script):
+def summarize(text):
     sys_msg = (
         "You are an AI that gets a scripted video. You should then summarize this "
         "and lift the most important points. Keep the order when summarizing. "
@@ -18,7 +18,7 @@ def gpt(script):
 
     message = [
         {'role': 'system', 'content': sys_msg},
-        {'role': 'user', 'content': script},
+        {'role': 'user', 'content': text},
     ]
 
     try:
@@ -36,5 +36,5 @@ def gpt(script):
         return None
 
 if __name__ == "__main__":
-    output = gpt(test_text)
+    output = summarize(test_text)
     print(output)
