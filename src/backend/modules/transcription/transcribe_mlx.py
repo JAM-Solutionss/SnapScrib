@@ -15,7 +15,7 @@ def transcribe(path, filename):
     LOGGER.info("transcribing....")
     result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
     text = result["text"]
-    LOGGER.debug(text)  # Tippfehler korrigiert
+    LOGGER.debug(text)
     segments = result['segments']
 
     json_output = []
