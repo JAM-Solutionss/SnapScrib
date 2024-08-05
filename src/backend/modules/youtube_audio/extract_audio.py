@@ -1,11 +1,11 @@
 import yt_dlp
 import os
-from src.backend.utils.logger_config import LOGGER
+from .....src.backend.utils.logger_config import *
 
 def download_youtube_video_as_audio(url):
     try:
         # Set up yt-dlp options
-        output_path = "./youtube_audio/output"
+        output_path = "out"
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{

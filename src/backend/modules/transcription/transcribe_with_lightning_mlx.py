@@ -1,20 +1,17 @@
 from datetime import timedelta
 import json
 import os
-from src.backend.utils.logger_config import LOGGER 
 import sys
+from src.backend.utils.logger_config import LOGGER  # Korrigierter Import
+
 if sys.platform == 'darwin':
     from lightning_whisper_mlx import LightningWhisperMLX
-
-
-
 
 def transcribe(path, filename):
     LOGGER.info("transcribing....")
     whisper = LightningWhisperMLX(model="distil-large-v3", batch_size=12, quant=None)
     result = whisper.transcribe(path)
-    #print(result["segments"])
-    srt_content = (create_srt(result["segments"]))
+    srt_content = create_srt(result["segments"])
     srt_directory = os.path.join("transcription", "SrtFiles")
     os.makedirs(srt_directory, exist_ok=True)
     srtFilename = os.path.join(srt_directory, f"{filename}.srt")
@@ -47,7 +44,6 @@ def create_json(transcription):
         
     return json_content
 
-
 def create_srt(transcription):
     """Create SRT file content from transcription data."""
     LOGGER.info("Creating SRT file content...")
@@ -59,7 +55,6 @@ def create_srt(transcription):
        
     return "\n".join(srt_content)
 
-
 def writefile_json(input):
     LOGGER.info("Writing JSON file to OS...")
 
@@ -68,10 +63,8 @@ def writefile_json(input):
     jsonFilename = os.path.join(json_directory, f"transcription.json")
     with open(jsonFilename, "w") as file:
         json.dump(input, file, indent=2)
-    
-    
-
 
 if __name__ == "__main__":
-    transcribe()
-    #print(save)
+    test_path = "out/audiofile.wav"
+    test_filename = "test_output"
+    transcribe(test_path, test_filename)
