@@ -1,6 +1,8 @@
-from transcription.transcribe import check_os
-from youtube_audio.extract_audio import download_youtube_video_as_audio
-from logger_config import LOGGER
+import os
+import sys
+from modules.transcription.transcribe import check_os
+from modules.youtube_audio.extract_audio import download_youtube_video_as_audio
+from utils.logger_config import LOGGER
 
 
 
@@ -16,4 +18,3 @@ if __name__ == "__main__":
     # then it will trigger the transcription process
     LOGGER.info("Transcribing audio...")
     check_os(output, filename)
-    

@@ -1,30 +1,30 @@
 from datetime import timedelta
-import os
 import json
-from logger_config import LOGGER
+import os
 import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
+from logger_config import LOGGER
+
 if sys.platform == 'darwin':
     import mlx_whisper
-
-
 
 def transcribe(path, filename):
     path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
     speech_file = path
     LOGGER.info("transcribing....")
-    result = mlx_whisper.transcribe(speech_file ,word_timestamps=True)
+    result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
     text = result["text"]
-    LOGGER.debu(text)
+    LOGGER.debug(text)  # Tippfehler korrigiert
     segments = result['segments']
-
 
     json_output = []
 
     for segment in segments:
-        startTime = str(0)+str(timedelta(seconds=int(segment['start'])))+',000'
-        endTime = str(0)+str(timedelta(seconds=int(segment['end'])))+',000'
+        startTime = str(0) + str(timedelta(seconds=int(segment['start']))) + ',000'
+        endTime = str(0) + str(timedelta(seconds=int(segment['end']))) + ',000'
         text = segment['text']
-        segmentId = segment['id']+1
+        segmentId = segment['id'] + 1
         segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] == ' ' else text}\n\n"
 
         srt_directory = os.path.join("transcription", "SrtFiles")
@@ -43,7 +43,6 @@ def transcribe(path, filename):
 
     return srtFilename
 
-
 def writefile(input):
     LOGGER.info("Writing JSON file to OS...")
 
@@ -54,5 +53,6 @@ def writefile(input):
         json.dump(input, file, indent=2)
 
 if __name__ == "__main__":
-    transcribe()
-    #print(save)
+    test_path = "out/audiofile.wav"
+    test_filename = "test_output"
+    transcribe(test_path, test_filename)
