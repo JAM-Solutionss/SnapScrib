@@ -2,10 +2,9 @@ import os
 import sys
 from modules.transcription.transcribe import check_os
 from modules.youtube_audio.extract_audio import download_youtube_video_as_audio
-from utils.logger_config import LOGGER
 
-
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'utils')))
+from logger_config import LOGGER
 
 if __name__ == "__main__":
     url = "https://www.youtube.com/watch?v=iXIwm4mCpuc"

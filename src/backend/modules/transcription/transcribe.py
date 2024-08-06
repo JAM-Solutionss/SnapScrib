@@ -17,7 +17,7 @@ def check_os(path, filename):
     system = sys.platform
     if system == "darwin":
         LOGGER.info("This system is running macOS.")
-        Logger.debug("Choosing transcription method...")
+        Logger.debug(LOGGER, "Choosing transcription method...")
         choose = input("Choose 1: mlx or 2: lightning mlx: ")
         if choose == "1":
             mlx(path, filename)
