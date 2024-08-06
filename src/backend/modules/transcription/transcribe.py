@@ -12,7 +12,6 @@ if sys.platform == 'darwin':
     from transcription.transcribe_mlx import transcribe as mlx
     from transcription.transcribe_with_lightning_mlx import transcribe as lightning
 
-
 def check_os(path, filename):
     system = sys.platform
     if system == "darwin":
@@ -24,7 +23,6 @@ def check_os(path, filename):
         else:
             lightning(path, filename)
 
-            
     elif system == "win32":
         LOGGER.info("This system is running Windows.")
         whisper(path, filename)
@@ -35,8 +33,6 @@ def check_os(path, filename):
 
     else:
         LOGGER.error("Unknown operating system.")
-
-
 
 if __name__ == "__main__":
     check_os()
