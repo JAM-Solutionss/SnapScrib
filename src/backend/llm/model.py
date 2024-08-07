@@ -1,7 +1,6 @@
 import os
 from groq import Groq
 from dotenv import load_dotenv
-from test_llm import test_text
 
 load_dotenv()
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
