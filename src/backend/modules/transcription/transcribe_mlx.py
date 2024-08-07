@@ -12,8 +12,14 @@ if sys.platform == 'darwin':
 def transcribe(path, filename):
     path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
     speech_file = path
-    LOGGER.info("transcribing....")
-    result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
+    LOGGER.info("Transcribing...")
+    
+    try:
+        result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
+    except Exception as e:
+        LOGGER.error(f"Transcription failed: {str(e)}")
+        sys.exit(1)
+    
     text = result["text"]
     LOGGER.debug(text)
     segments = result['segments']
@@ -53,6 +59,6 @@ def writefile(input):
         json.dump(input, file, indent=2)
 
 if __name__ == "__main__":
-    test_path = "out/audiofile.wav"
+    test_path = "audiofile.wav"
     test_filename = "test_output"
     transcribe(test_path, test_filename)

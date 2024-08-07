@@ -53,6 +53,6 @@ def writefile(input):
         json.dump(input, file, indent=2)
 
 if __name__ == "__main__":
-    test_path = "out/audiofile.ogg"
+    test_path = "./out/audiofile.ogg"
     test_filename = "test_output"
     transcribe_audio(test_path, test_filename)
