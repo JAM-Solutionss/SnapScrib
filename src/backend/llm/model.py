@@ -1,9 +1,14 @@
 import os
+import time
+import sys
 from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from modules.new_transcription.transcription import get_transcript
 
 def summarize(text):
     sys_msg = (
@@ -35,8 +40,20 @@ def summarize(text):
         return None
 
 if __name__ == "__main__":
-    with open('SnapScrib/transcription/SrtFiles/transcription.srt', 'r') as file:
-        test = file.read()
-    
-    output = summarize(test)
+    # transcription
+    transcript_start_time = time.time()
+    youtube_url = 'https://www.youtube.com/watch?v=iXIwm4mCpuc'
+    transcript, language_code = get_transcript(youtube_url)
+    print(f'Transcript: {transcript}')
+    print(f'Language: {language_code}')
+    transcript_end_time = time.time()
+
+    # summarizing
+    summarize_start_time = time.time()
+    output = summarize(transcript)
     print(output)
+    summarize_end_time = time.time()
+
+    print(f'Transcription time: {round((transcript_end_time - transcript_start_time), 3)} seconds')
+    print(f'Summarizing time: {round((summarize_end_time - summarize_start_time), 3)} seconds')
+    print(f'Execution time: {round((summarize_end_time - transcript_start_time), 3)} seconds')
