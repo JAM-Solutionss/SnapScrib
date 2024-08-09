@@ -1,91 +1,53 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="SnapScrib" />
+---
 
-  &#xa0;
+# SnapScrib
 
-  <!-- <a href="https://snapscrib.netlify.app">Demo</a> -->
-</div>
+### Project Description
+SnapScrib is a Python-based web application that retrieves subtitles from YouTube videos and summarizes them using the Groq API. Users can customize the language of the summary according to their preferences.
 
-<h1 align="center">SnapScrib</h1>
+### Technologies Used
+- **Programming Language:** Python
+- **Main Libraries:**
+  - `youtube_transcript_api`: For retrieving subtitles from YouTube videos.
+  - `groq`: For summarizing the retrieved subtitles.
+- **Web UI:** SnapScrib provides a user-friendly interface where users can input the YouTube URL and choose the language for the summary.
 
-<p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/arvedb/snapscrib?color=56BEB8">
+### Installation and Setup
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/arvedb/snapscrib?color=56BEB8">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/arvedb/snapscrib?color=56BEB8">
-
-  <img alt="License" src="https://img.shields.io/github/license/arvedb/snapscrib?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/arvedb/snapscrib?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/arvedb/snapscrib?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/arvedb/snapscrib?color=56BEB8" /> -->
-</p>
-
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  SnapScrib 🚀 Under construction...  🚧
-</h4> 
-
-<hr> -->
-
-<p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/arvedb" target="_blank">Author</a>
-</p>
-
-<br>
-
-## :dart: About ##
-
-Describe your project
-
-## :sparkles: Features ##
-
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
-
-## :rocket: Technologies ##
-
-The following tools were used in this project:
-
-- [Python](https://www.python.org/downloads/)
-- [Flask](https://flask.palletsprojects.com/en/3.0.x/)
-- [GROQ](https://groq.com/)
-
-## :white_check_mark: Requirements ##
-
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Python](https://www.python.org/downloads/) installed.
-
-## :checkered_flag: Starting ##
+#### Dependencies
+Ensure all necessary Python dependencies are installed by running the following command:
 
 ```bash
-# Clone this project
-$ git clone https://github.com/arvedb/snapscrib
-
-# Install dependencies
-$ pip install -r requirements
-
-# Run the project
-$ python ./src/app.py
-
-# The server will initialize in the <http://localhost:5000>
+pip install -r requirements.txt
 ```
 
-## :memo: License ##
+#### Configuration
+Create a `.env` file in the project directory and add your Groq API key as follows:
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+```plaintext
+GROQ_API_KEY="your_api_key_here"
+```
 
+### Usage
 
-&#xa0;
+1. **Visit the Website:** Start the application and navigate to the web interface.
+2. **Enter YouTube URL:** Provide the URL of the YouTube video you want to summarize.
+3. **Select Language:** Choose the language in which the summary should be created.
+4. **Receive Summary:** The subtitles will be retrieved, sent to the Groq API, and the summary will be provided in the selected language.
 
-<a href="#top">Back to top</a>
+### Contributors
+- [Arved Bahde](https://github.com/arvedb)
+- [Jannis Krija](https://github.com/cipher-shad0w)
+- [Miriam](https://github.com/mirixy)
+
+### Contributing
+To contribute to SnapScrib:
+
+1. **Fork the repository** and create a new branch for your changes.
+2. **Implement your changes** and test them.
+3. **Submit a Pull Request** for review.
+
+### License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
