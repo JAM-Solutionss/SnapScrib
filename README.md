@@ -1,20 +1,96 @@
-# SnapScrib
-## Install requirements
-`pip install -r requirements.txt`
+<div align="center" id="top"> 
+  <img src="./.github/app.gif" alt="SnapScrib" />
 
-### Windows specific instructions
-- To utalize NVIDIA Cuda, you need to install the CUDA Torch library. You can find the instructions [here](https://pytorch.org/).
+  &#xa0;
 
-## How to Contribute
+  <!-- <a href="https://snapscrib.netlify.app">Demo</a> -->
+</div>
 
-1. Fork the repository on GitHub.
-2. Clone your forked repository to your local machine.
-3. Create a new branch for your feature or bug fix.
-4. Make your changes and commit them with descriptive commit messages.
-5. Push your changes to your fork on GitHub.
-6. Submit a pull request to the main repository.
-7. Wait for the maintainers to review your pull request.
-8. Make any requested changes if necessary.
-9. Once approved, your changes will be merged into the main branch.
+<h1 align="center">SnapScrib</h1>
 
-Please ensure that your code follows the project's coding standards and includes appropriate tests if applicable. For more detailed information on contributing, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) file.
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/arvedb}/snapscrib?color=56BEB8">
+
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/arvedb}/snapscrib?color=56BEB8">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/arvedb}/snapscrib?color=56BEB8">
+
+  <img alt="License" src="https://img.shields.io/github/license/arvedb}/snapscrib?color=56BEB8">
+
+  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/arvedb}/snapscrib?color=56BEB8" /> -->
+
+  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/arvedb}/snapscrib?color=56BEB8" /> -->
+
+  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/arvedb}/snapscrib?color=56BEB8" /> -->
+</p>
+
+<!-- Status -->
+
+<!-- <h4 align="center"> 
+	🚧  SnapScrib 🚀 Under construction...  🚧
+</h4> 
+
+<hr> -->
+
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="https://github.com/arvedb}" target="_blank">Author</a>
+</p>
+
+<br>
+
+## :dart: About ##
+
+Describe your project
+
+## :sparkles: Features ##
+
+:heavy_check_mark: Feature 1;\
+:heavy_check_mark: Feature 2;\
+:heavy_check_mark: Feature 3;
+
+## :rocket: Technologies ##
+
+The following tools were used in this project:
+
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## :white_check_mark: Requirements ##
+
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+## :checkered_flag: Starting ##
+
+```bash
+# Clone this project
+$ git clone https://github.com/arvedb}/snapscrib
+
+# Access
+$ cd snapscrib
+
+# Install dependencies
+$ yarn
+
+# Run the project
+$ yarn start
+
+# The server will initialize in the <http://localhost:3000>
+```
+
+## :memo: License ##
+
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+
+
+&#xa0;
+
+<a href="#top">Back to top</a>
