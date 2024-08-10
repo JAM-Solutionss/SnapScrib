@@ -1,20 +1,53 @@
+---
+
 # SnapScrib
-## Install requirements
-`pip install -r requirements.txt`
 
-### Windows specific instructions
-- To utalize NVIDIA Cuda, you need to install the CUDA Torch library. You can find the instructions [here](https://pytorch.org/).
+### Project Description
+SnapScrib is a Python-based web application that retrieves subtitles from YouTube videos and summarizes them using the Groq API. Users can customize the language of the summary according to their preferences.
 
-## How to Contribute
+### Technologies Used
+- **Programming Language:** Python
+- **Main Libraries:**
+  - `youtube_transcript_api`: For retrieving subtitles from YouTube videos.
+  - `groq`: For summarizing the retrieved subtitles.
+- **Web UI:** SnapScrib provides a user-friendly interface where users can input the YouTube URL and choose the language for the summary.
 
-1. Fork the repository on GitHub.
-2. Clone your forked repository to your local machine.
-3. Create a new branch for your feature or bug fix.
-4. Make your changes and commit them with descriptive commit messages.
-5. Push your changes to your fork on GitHub.
-6. Submit a pull request to the main repository.
-7. Wait for the maintainers to review your pull request.
-8. Make any requested changes if necessary.
-9. Once approved, your changes will be merged into the main branch.
+### Installation and Setup
 
-Please ensure that your code follows the project's coding standards and includes appropriate tests if applicable. For more detailed information on contributing, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) file.
+#### Dependencies
+Ensure all necessary Python dependencies are installed by running the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Configuration
+Create a `.env` file in the project directory and add your Groq API key as follows:
+
+```plaintext
+GROQ_API_KEY="your_api_key_here"
+```
+
+### Usage
+
+1. **Visit the Website:** Start the application and navigate to the web interface.
+2. **Enter YouTube URL:** Provide the URL of the YouTube video you want to summarize.
+3. **Select Language:** Choose the language in which the summary should be created.
+4. **Receive Summary:** The subtitles will be retrieved, sent to the Groq API, and the summary will be provided in the selected language.
+
+### Contributors
+- [Arved Bahde](https://github.com/arvedb)
+- [Jannis Krija](https://github.com/cipher-shad0w)
+- [Miriam](https://github.com/mirixy)
+
+### Contributing
+To contribute to SnapScrib:
+
+1. **Fork the repository** and create a new branch for your changes.
+2. **Implement your changes** and test them.
+3. **Submit a Pull Request** for review.
+
+### License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
