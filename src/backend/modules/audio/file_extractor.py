@@ -1,13 +1,18 @@
-from audio_extractor import AudioExtractor, DummyAudio
+from audio_extractor import AudioExtractor
+from audio_data import Audio
 from typing import Type
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
+
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "utils"))
+)
 from logger_config import LOGGER
 
 
 class FileExtractor(AudioExtractor):
-    def extract(self, file_source: str) -> Type[DummyAudio]:
+
+    def extract(self, file_source: str) -> Type[Audio]:
         """
         Extract audio from a file source.
 
@@ -22,11 +27,11 @@ class FileExtractor(AudioExtractor):
         """
         if os.path.isfile(file_source):
             # file_source is a valid file path
-            
+
             LOGGER.info(f"Extracting audio from file source {file_source}...")
-            
-            audio = DummyAudio(audio_file=file_source)  # Instantiation needs to be adjusted later, when Adio dataclass is implemented
-            
+
+            audio = Audio(audio_file=file_source)
+
             return audio
         else:
             # file_source is not a valid file path
