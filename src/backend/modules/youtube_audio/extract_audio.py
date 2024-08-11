@@ -29,6 +29,7 @@ def download_youtube_video_as_audio(url, output_path='out'):
     except Exception as e:
         LOGGER.error(f"An error occurred: {e}")
 
+
 if __name__ == "__main__":
     url = input("Enter the YouTube video URL: ").strip()
     
