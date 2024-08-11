@@ -12,7 +12,7 @@ from utils.logger_config import LOGGER
 
 class FileExtractor(AudioExtractor):
 
-    def extract(self, file_source: str) -> Type[Audio]:
+    def extract(file_source: str) -> Type[Audio]:
         """
         Extract audio from a file source.
 
@@ -36,3 +36,4 @@ class FileExtractor(AudioExtractor):
         else:
             # file_source is not a valid file path
             raise ValueError(f"Invalid file path: {file_source}")
+
