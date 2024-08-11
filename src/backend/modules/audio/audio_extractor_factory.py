@@ -10,8 +10,7 @@ from utils.logger_config import LOGGER
 def get_audio_extractor(source: str) -> AudioExtractor:
     """Factory method to get the appropriate AudioExtractor"""
     if is_youtube_link(source): # Needs to be implemented when youtube extractor is implemented
-        LOGGER.warning("Youtube link not supported yet")
-        return None
+        raise NotImplementedError("Youtube link not supported yet")
     elif is_supported_audio_file(source):
         LOGGER.debug("Selected FileExtractor")
         return FileExtractor
