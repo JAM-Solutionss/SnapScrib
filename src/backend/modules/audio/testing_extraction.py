@@ -3,16 +3,16 @@ import os
 import sys
 
 sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "utils"))
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 )
-from logger_config import LOGGER
+from utils.logger_config import LOGGER
 
 if __name__ == "__main__":
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     test_path = os.path.abspath(
         os.path.join(
-            current_dir, "..", "..", "..", "..", "youtube_audio", "output", "audio.mp3"
+            current_dir, "..", "..", "..", "..", "data","audio.mp3"
         )
     )
 
