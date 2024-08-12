@@ -1,6 +1,6 @@
 import os
 import sys
-from modules.transcription.transcribe import check_os
+from src.backend.modules.transcriber.transcribe import check_os
 from modules.youtube_audio.extract_audio import download_youtube_video_as_audio
 from utils.logger_config import LOGGER
 
