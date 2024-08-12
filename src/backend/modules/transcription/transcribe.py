@@ -9,8 +9,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 from modules.transcription.transcribe_whisper import transcribe_audio as whisper
 
 if sys.platform == 'darwin':
-    from transcription.transcribe_mlx import transcribe as mlx
-    from transcription.transcribe_with_lightning_mlx import transcribe as lightning
+    from modules.transcription.transcribe_mlx import transcribe as mlx
+    from modules.transcription.transcribe_with_lightning_mlx import transcribe as lightning
 
 
 def check_os(path, filename):
