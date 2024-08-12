@@ -8,5 +8,5 @@ from audio.audio_data import Audio
 class Transcriber(ABC):
 
     @abstractmethod
-    def transcribe(self, audio_file: Type[Audio]) -> str:
+    def transcribe(self, audio_file: Type[Audio], url=None) -> str:
         pass
