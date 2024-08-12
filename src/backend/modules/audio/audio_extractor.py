@@ -1,6 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Type
-from audio_data import Audio
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from audio.audio_data import Audio
 
 
 

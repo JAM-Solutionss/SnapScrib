@@ -3,8 +3,8 @@ import json
 import os
 import sys
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
-from logger_config import LOGGER
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from utils.logger_config import LOGGER
 
 if sys.platform == 'darwin':
     import mlx_whisper
@@ -15,7 +15,7 @@ def transcribe(path, filename):
     LOGGER.info("transcribing....")
     result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
     text = result["text"]
-    LOGGER.debug(text)  # Tippfehler korrigiert
+    LOGGER.debug(text)
     segments = result['segments']
 
     json_output = []

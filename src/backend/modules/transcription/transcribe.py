@@ -2,11 +2,11 @@ from logging import Logger
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
-from logger_config import LOGGER
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from utils.logger_config import LOGGER
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'modules')))
-from transcription.transcribe_whisper import transcribe_audio as whisper
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from modules.transcription.transcribe_whisper import transcribe_audio as whisper
 
 if sys.platform == 'darwin':
     from transcription.transcribe_mlx import transcribe as mlx

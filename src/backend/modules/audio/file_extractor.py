@@ -1,12 +1,12 @@
-from audio_extractor import AudioExtractor
-from audio_data import Audio
 from typing import Type
 import os
 import sys
 
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from audio.audio_data import Audio
+from audio.audio_extractor import AudioExtractor
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
 
 
