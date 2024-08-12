@@ -84,12 +84,11 @@ GROQ_API_KEY="your_api_key_here"
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 
-
+## Collaborate
 If you have any questions or need further assistance, please feel free to contact any of the contributors.
-
 Happy coding!
 
-
+---
 
 Made with :heart: by:
 - [Arved Bahde](https://github.com/arvedb)
