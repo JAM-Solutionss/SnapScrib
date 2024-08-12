@@ -35,7 +35,7 @@
 SnapScrib is a Python-based web application that retrieves subtitles from YouTube videos and summarizes them using the Groq API. Users can customize the language of the summary according to their preferences.
 
 
-## Technologies ##
+## :: Technologies ##
 - **Programming Language:** Python
 - **Main Libraries:**
   - `youtube_transcript_api`: For retrieving subtitles from YouTube videos.
@@ -78,10 +78,6 @@ GROQ_API_KEY="your_api_key_here"
 
 - `requirements.txt`: List of Python dependencies.
 
-## Technologies Used
-
-- [Streamlit](https://streamlit.io/): Framework for creating interactive web applications.
-- [Open Food Facts Python SDK](https://github.com/openfoodfacts/openfoodfacts-python): Python library for interacting with the Open Food Facts database.
 
 ## License
 
