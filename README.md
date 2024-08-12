@@ -47,7 +47,7 @@ SnapScrib is a Python-based web application that retrieves subtitles from YouTub
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) installed.
 
 
-## Installation
+## :checkered_flag: Starting
 
 1. **Clone the repository:**
    ```
