@@ -7,10 +7,8 @@ from utils.logger_config import LOGGER
 
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    print(f'current_dir: {current_dir}')
-    source_file = os.path.join(
-        current_dir, "..", "..", "..", "..", "data", "audio.mp3"
-    )
+    print(f"current_dir: {current_dir}")
+    source_file = os.path.join(current_dir, "..", "..", "..", "..", "data", "audio.mp3")
 
     transcription = get_transcription().transcribe(audio_file=source_file)
     LOGGER.info(f"RETURN: {transcription}")

@@ -1,13 +1,15 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from modules.transcriber.whisper_transcriber import Whisper_Transcriber as whisper
 from utils.logger_config import LOGGER
 
-if sys.platform == 'darwin':
+if sys.platform == "darwin":
     from modules.transcriber.mlx_transcriber import MLX_Transcriber as mlx
-    from modules.transcriber.lightning_mlx_transcriber import Lightning_MLX_Transcriber as lightning
+    from modules.transcriber.lightning_mlx_transcriber import (
+        Lightning_MLX_Transcriber as lightning,
+    )
 
 
 def get_transcription():
@@ -21,7 +23,6 @@ def get_transcription():
         else:
             return lightning
 
-            
     elif system == "win32":
         LOGGER.info("This system is running Windows.")
         return whisper

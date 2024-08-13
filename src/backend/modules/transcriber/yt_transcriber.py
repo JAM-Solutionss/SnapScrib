@@ -5,8 +5,9 @@ from youtube_transcript_api import YouTubeTranscriptApi
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from transcriber.transcriber_blueprint import Transcriber
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
+
 
 class YT_Transcriber(Transcriber):
 
@@ -18,7 +19,9 @@ class YT_Transcriber(Transcriber):
             for transcript in transcript_list:
                 if transcript.is_generated or transcript.language_code:
                     try:
-                        full_transcript = " ".join([part['text'] for part in transcript.fetch()])
+                        full_transcript = " ".join(
+                            [part["text"] for part in transcript.fetch()]
+                        )
                         return full_transcript
                     except Exception as e:
                         LOGGER.debug(f"Error fetching transcript: {e}")
@@ -30,10 +33,10 @@ class YT_Transcriber(Transcriber):
             return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     youtube_url = "https://www.youtube.com/watch?v=iXIwm4mCpuc"
     try:
-        transcript = YT_Transcriber().transcribe('', youtube_url)
+        transcript = YT_Transcriber().transcribe("", youtube_url)
         if transcript:
             print(f"Transcript: {transcript}")
         else:
