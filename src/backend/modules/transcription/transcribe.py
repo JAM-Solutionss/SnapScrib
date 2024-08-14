@@ -2,15 +2,20 @@ from logging import Logger
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'utils')))
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "utils"))
+)
 from logger_config import LOGGER
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'modules')))
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "modules"))
+)
 from transcription.transcribe_whisper import transcribe_audio as whisper
 
-if sys.platform == 'darwin':
+if sys.platform == "darwin":
     from transcription.transcribe_mlx import transcribe as mlx
     from transcription.transcribe_with_lightning_mlx import transcribe as lightning
+
 
 def check_os(path, filename):
     system = sys.platform
@@ -33,6 +38,7 @@ def check_os(path, filename):
 
     else:
         LOGGER.error("Unknown operating system.")
+
 
 if __name__ == "__main__":
     check_os()
