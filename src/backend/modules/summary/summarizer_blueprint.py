@@ -4,5 +4,5 @@ from transcription import Transcription
 
 class Summarizer(ABC):
     @abstractmethod
-    def summarize(transcription: Type[Transcription]) -> str:
+    def summarize(self, transcription: str, style: str='neutral', length: float=0.3) -> str:
         pass
