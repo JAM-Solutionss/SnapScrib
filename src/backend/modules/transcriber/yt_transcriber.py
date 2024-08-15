@@ -11,7 +11,7 @@ from utils.logger_config import LOGGER
 
 class YT_Transcriber(Transcriber):
 
-    def transcribe(self, audio_file, youtube_url):
+    def transcribe(audio_file, youtube_url):
         try:
             video_id = youtube_url.split("v=")[-1]
             transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
@@ -36,7 +36,7 @@ class YT_Transcriber(Transcriber):
 if __name__ == "__main__":
     youtube_url = "https://www.youtube.com/watch?v=iXIwm4mCpuc"
     try:
-        transcript = YT_Transcriber().transcribe("", youtube_url)
+        transcript = YT_Transcriber().transcribe(youtube_url=youtube_url)
         if transcript:
             print(f"Transcript: {transcript}")
         else:

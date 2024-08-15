@@ -12,7 +12,7 @@ from utils.logger_config import LOGGER
 
 
 class Whisper_Transcriber(Transcriber):
-    def transcribe(audio_file: str):
+    def transcribe(audio_file: str, youtube_url: str) -> str:
         torch.cuda.init()
         device = "cuda"
 

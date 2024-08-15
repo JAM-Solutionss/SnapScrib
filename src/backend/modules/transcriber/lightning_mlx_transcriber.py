@@ -12,7 +12,7 @@ if sys.platform == "darwin":
 
 
 class Lightning_MLX_Transcriber(Transcriber):
-    def transcribe(audio_file: str) -> str:
+    def transcribe(audio_file: str, youtube_url: str) -> str:
         LOGGER.info(f"Starting transcription for file: {audio_file}")
 
         try:

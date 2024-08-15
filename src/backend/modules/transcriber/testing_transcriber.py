@@ -10,5 +10,7 @@ if __name__ == "__main__":
     print(f"current_dir: {current_dir}")
     source_file = os.path.join(current_dir, "..", "..", "..", "..", "data", "audio.mp3")
 
-    transcription = get_transcription().transcribe(audio_file=source_file)
+    url = "https://www.youtube.com/watch?v=-HV0B8pHjuA"
+
+    transcription = get_transcription().transcribe(audio_file=source_file, youtube_url=url)
     LOGGER.info(f"RETURN: {transcription}")

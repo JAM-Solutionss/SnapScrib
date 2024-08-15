@@ -13,7 +13,7 @@ if sys.platform == "darwin":
 
 
 class MLX_Transcriber(Transcriber):
-    def transcribe(audio_file: str):
+    def transcribe(audio_file: str, youtube_url: str) -> str:
         path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
         speech_file = audio_file
         result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
