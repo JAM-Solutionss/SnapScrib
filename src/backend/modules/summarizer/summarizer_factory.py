@@ -1,7 +1,7 @@
 from llama_summarizer import Llama_Summarizer
 
 
-def get_summary():
+def get_summarizer():
 
     choice = int(input("Enter 1 for the LLAMA summary \n"))
 

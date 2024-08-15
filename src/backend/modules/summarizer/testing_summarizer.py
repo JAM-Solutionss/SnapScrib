@@ -1,4 +1,4 @@
-from summarize import get_summary
+from summarizer_factory import get_summarizer
 from dummy_text import text
 import os
 import sys
@@ -11,5 +11,5 @@ from utils.logger_config import LOGGER
 
 
 if __name__ == "__main__":
-    summary = get_summary().summarize(text)
+    summary = get_summarizer().summarize(text)
     LOGGER.info(f"SUMMARY: {summary}")

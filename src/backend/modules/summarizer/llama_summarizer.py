@@ -1,7 +1,7 @@
 import os
 from groq import Groq
 from dotenv import load_dotenv
-from summarizer_blueprint import Summarizer
+from summarizer_interface import Summarizer
 
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
