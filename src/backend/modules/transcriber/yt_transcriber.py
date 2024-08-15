@@ -3,7 +3,7 @@ import sys
 from youtube_transcript_api import YouTubeTranscriptApi
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from transcriber.transcriber_blueprint import Transcriber
+from transcriber.transcriber_interface import Transcriber
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER

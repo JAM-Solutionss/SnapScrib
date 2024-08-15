@@ -1,4 +1,4 @@
-from transcribe import get_transcription
+from src.backend.modules.transcriber.transcriber_factory import get_transcription
 import sys
 import os
 
@@ -12,5 +12,7 @@ if __name__ == "__main__":
 
     url = "https://www.youtube.com/watch?v=-HV0B8pHjuA"
 
-    transcription = get_transcription().transcribe(audio_file=source_file, youtube_url=url)
+    transcription = get_transcription().transcribe(
+        audio_file=source_file, youtube_url=url
+    )
     LOGGER.info(f"RETURN: {transcription}")
