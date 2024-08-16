@@ -2,7 +2,7 @@ import sys, os
 import re
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from audio.file_extractor import FileExtractor
-from audio.audio_extractor import AudioExtractor
+from src.backend.modules.audio.audio_extractor_interface import AudioExtractor
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
 
