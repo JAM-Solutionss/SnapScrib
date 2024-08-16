@@ -10,6 +10,7 @@ from utils.logger_config import LOGGER
 @dataclass
 class Audio:
     audio_file: str
+    source: str
 
     @property
     def duration(self) -> float:
