@@ -3,9 +3,7 @@ import sys
 import mutagen
 import os
 
-sys.path.append(
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
 
 
@@ -42,3 +40,18 @@ class Audio:
                 return self.audio_file.split(".")[-1]
         else:
             raise ValueError(f"Invalid audio file: {self.audio_file}")
+
+    @property
+    def is_youtube_source(self) -> bool:
+        """:return: True if audio source is a YouTube URL"""
+        return self.audio_file.lower().startswith(
+            (
+                "http://www.youtube.com/watch?v=",
+                "https://www.youtube.com/watch?v=",
+                "http://youtu.be/",
+                "https://youtu.be/",
+                "www.youtube.com/watch?v=",
+                "youtube.com/watch?v=",
+                "youtu.be/",
+            )
+        )
