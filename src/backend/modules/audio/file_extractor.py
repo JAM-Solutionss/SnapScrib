@@ -29,7 +29,7 @@ class FileExtractor(AudioExtractor):
 
             LOGGER.info(f"Extracting audio from file source {file_source}...")
 
-            audio = Audio(audio_file=file_source)
+            audio = Audio(audio_file=file_source, source=file_source)
 
             return audio
         else:
