@@ -45,7 +45,7 @@ class Audio:
     @property
     def is_youtube_source(self) -> bool:
         """:return: True if audio source is a YouTube URL"""
-        return self.audio_file.lower().startswith(
+        return self.source.lower().startswith(
             (
                 "http://www.youtube.com/watch?v=",
                 "https://www.youtube.com/watch?v=",
