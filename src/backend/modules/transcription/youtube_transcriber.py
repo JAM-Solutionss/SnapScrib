@@ -1,6 +1,6 @@
 import os
 import sys
-# from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api import YouTubeTranscriptApi
 from transcriber_interface import Transcriber
 from transcription_data import Transcription
 
@@ -10,10 +10,29 @@ from modules.audio.audio_data import Audio
 
 
 class YoutubeTranscriber(Transcriber):
-
     def transcribe(audio: Audio) -> Transcription:
-        pass
+        if not audio.is_youtube_source:
+            raise ValueError("Audio source is not a valid YouTube URL")
 
+        try:
+            video_id = audio.source.split("v=")[-1]
+            transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+
+            for transcript in transcript_list:
+                if transcript.is_generated or transcript.language_code:
+                    try:
+                        full_transcript = " ".join(
+                            [part["text"] for part in transcript.fetch()]
+                        )
+                        return Transcription(full_transcript)
+                    except Exception as e:
+                        LOGGER.debug(f"Error fetching transcript: {e}")
+                        continue
+
+            raise Exception("No suitable transcript found.")
+        except Exception as e:
+            LOGGER.error(f"Error during transcription: {e}")
+            return None
 
 # class YT_Transcriber(Transcriber):
 
@@ -40,12 +59,12 @@ class YoutubeTranscriber(Transcriber):
 
 
 # if __name__ == "__main__":
-    # youtube_url = "https://www.youtube.com/watch?v=iXIwm4mCpuc"
-    # try:
-    #     transcript = YT_Transcriber().transcribe(youtube_url=youtube_url)
-    #     if transcript:
-    #         print(f"Transcript: {transcript}")
-    #     else:
-    #         LOGGER.debug("Failed to retrieve a transcript.")
-    # except Exception as e:
-    #     LOGGER.debug(f"An error occurred: {e}")
+# youtube_url = "https://www.youtube.com/watch?v=iXIwm4mCpuc"
+# try:
+#     transcript = YT_Transcriber().transcribe(youtube_url=youtube_url)
+#     if transcript:
+#         print(f"Transcript: {transcript}")
+#     else:
+#         LOGGER.debug("Failed to retrieve a transcript.")
+# except Exception as e:
+#     LOGGER.debug(f"An error occurred: {e}")
