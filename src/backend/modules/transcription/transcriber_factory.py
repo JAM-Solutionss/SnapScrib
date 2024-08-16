@@ -1,12 +1,13 @@
 import sys
-from src.backend.modules.transcription.lightning_mlx_transcriber import (
-    LightningMlxTranscriber,
-)
-from src.backend.modules.transcription.mlx_transcriber import MlxTranscriber
-from src.backend.modules.transcription.trranscriber_interface import Transcriber
-from src.backend.modules.transcription.whisper_transcriber import WhisperTranscriber
-from src.backend.modules.transcription.youtube_transcriber import YoutubeTranscriber
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from modules.transcription.lightning_mlx_transcriber import LightningMlxTranscriber
+from modules.transcription.mlx_transcriber import MlxTranscriber
+from src.backend.modules.transcription.transcriber_interface import Transcriber
+from modules.transcription.whisper_transcriber import WhisperTranscriber
+from modules.transcription.youtube_transcriber import YoutubeTranscriber
 
+operating_system = sys.platform
 
 # System-specific transcriber classes
 transcribers = {
@@ -48,9 +49,7 @@ def get_transcriber(transcriber_type: str = None) -> Transcriber:
         ValueError: If the specified transcriber type is not supported on the current operating system, or if none transcriber is supported on the current operating system.
     """
 
-    operating_system = sys.platform
-
-    if transcriber_type.lower() is None:
+    if transcriber_type is None:
         for name, transcriber_info in transcribers.items():
             if operating_system in transcriber_info["supported_operating_systems"]:
                 return transcriber_info["transcriber_class"]
