@@ -186,11 +186,3 @@ class YoutubeTranscriber(Transcriber):
         return start + duration
 
 
-if __name__ == "__main__":
-    youtube_url = "https://www.youtube.com/watch?v=MXrdD5cc6Ao"
-    yt_transcriber = YoutubeTranscriber()
-    audio_dummy = Audio(audio_file=None, source=youtube_url)
-    language = "deas"
-    transcript = yt_transcriber.transcribe(audio=audio_dummy, language=language)
-    LOGGER.debug(transcript.json_output)
-    # LOGGER.debug(transcript.text)

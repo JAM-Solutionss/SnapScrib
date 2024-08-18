@@ -52,8 +52,14 @@ if __name__ == "__main__":
     # transcriber = get_transcriber("irgendwas")
     # print(transcriber)
 
+    ### Testing YoutubeTranscriber ###
+
     yt_url = "https://www.youtube.com/watch?v=-HV0B8pHjuA"
     youtube_transcriber = get_transcriber("youtube")
-    audio_dummy = Audio(audio_file=yt_url, source=yt_url)
-    transcription = youtube_transcriber.transcribe(audio_dummy)
-    print(transcription)
+    audio_dummy = Audio(audio_file=None, source=yt_url)
+    target_language = "de"
+    transcription = youtube_transcriber.transcribe(
+        audio_dummy, language=target_language
+    )
+    LOGGER.debug(transcription.json_output)
+    # LOGGER.debug(transcription.text)
