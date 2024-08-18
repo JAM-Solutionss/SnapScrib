@@ -1,20 +1,25 @@
+from modules.audio.audio_data import Audio
+from utils.logger_config import LOGGER
+from cgitb import text
 from email.mime import audio
 import os
 from re import T
 import sys
 from typing import Any
 from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.formatters import JSONFormatter, TextFormatter
 from transcriber_interface import Transcriber
 from transcription_data import Transcription
+import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from utils.logger_config import LOGGER
-from modules.audio.audio_data import Audio
 
 
 class YoutubeTranscriber(Transcriber):
 
     fallback_languages = ["en", "de"]
+
+    formatters = {"json": JSONFormatter(), "text": TextFormatter()}
 
     def transcribe(self, audio: Audio, language: str = fallback_languages[0]) -> None:
 
@@ -33,7 +38,20 @@ class YoutubeTranscriber(Transcriber):
             available_languages=available_languages,
         )
 
-        return transcript
+        transcript_output = transcript.fetch()
+
+        formatted_transcript_outputs = self._get_formatted_transcripts(
+            transcript_output=transcript_output
+        )
+
+        return Transcription(
+            text=formatted_transcript_outputs["text"],
+            json_output=self._formatted_json_output(
+                formatted_transcript_outputs["json"]
+            ),
+        )
+
+        # return transcript
 
     def _get_youtube_video_id(self, url: str) -> str:
         """Extract video ID from YouTube URL."""
@@ -56,12 +74,14 @@ class YoutubeTranscriber(Transcriber):
             return transcript_list.find_transcript([target_language])
 
         fallback_transcript = self._find_fallback_transcript(
-            transcript_list, available_languages
+            transcript_list=transcript_list, available_languages=available_languages
         )
         LOGGER.warning(
             f"Target language '{target_language}' not available. Using language '{fallback_transcript.language_code}' and trying to translate it to '{target_language}'"
         )
-        return self._translate_if_possible(fallback_transcript, target_language)
+        return self._translate_if_possible(
+            transcript=fallback_transcript, target_language=target_language
+        )
 
     def _find_fallback_transcript(self, transcript_list, available_languages):
 
@@ -73,81 +93,47 @@ class YoutubeTranscriber(Transcriber):
         return fallback_transcript
 
     def _translate_if_possible(self, transcript, target_language):
-        
+
         if transcript.is_translatable:
             available_translation_language_codes = (
-                self._get_available_translation_language_codes(transcript)
+                self._get_available_translation_language_codes(transcript=transcript)
             )
             if target_language in available_translation_language_codes:
-                    
+
                 return transcript.translate(target_language)
-            
+
             else:
                 LOGGER.warning(
                     f"Transcript cannot be translated to '{target_language}' from language '{transcript.language_code}'. Using untranslated language '{transcript.language_code}' transcript."
                 )
                 return transcript
-        
+
         LOGGER.warning(
             f"Transcript is not translatable. Using untranslated fallback language '{transcript.language_code}' transcript."
         )
         return transcript
 
-    def _translate_transcript(self, transcript, translate_language):
-        if translate_language:
-            transcript_translated = transcript.translate()
-        else:
-            return transcript
-    # def _get_transcription(self, transcript_list, language, transcript_language_codes):
-    #     if language in transcript_language_codes:
-    #         transcript = transcript_list.find_generated_transcript(
-    #             language_codes=[language]
-    #         )
-    #     elif Any(self.fallback_languages) in transcript_language_codes:
-    #         transcript_fallback = transcript_list.find_generated_transcript(
-    #             language_codes=self.fallback_languages
-    #         )
-    #         if transcript_fallback.is_translatable:
-    #             transcript = self._translate_transcript(
-    #                 transcript=transcript_fallback,
-    #                 translate_language=language
-    #             )
-    #         else:
-    #             LOGGER.warning(
-    #                 f"Fallback language transcript is not translatable to desired language, using untranslated fallback transcript."
-    #             )
-    #             transcript = transcript_fallback
-    #     else:
-    #         raise Exception(
-    #             f"No suitable transcript found for desired language {language} and fallback languages {self.fallback_languages}."
-    #         )
-    #     return transcript
+    def _get_formatted_transcripts(self, transcript_output) -> dict:
 
+        formatted_transcripts = {}
+        for formatter_name, formatter in self.formatters.items():
+            LOGGER.debug(f"Formatting transcript to {formatter_name} format")
+            LOGGER.debug(formatter)
+            formatted_transcripts[formatter_name] = formatter.format_transcript(
+                transcript_output
+            )
 
+        return formatted_transcripts
 
-# class YT_Transcriber(Transcriber):
+    def _formatted_json_output(self, transcript_json_output):
+        transcript_json_output_dict = json.loads(transcript_json_output)
 
-#     def transcribe(audio_file, youtube_url):
-#         try:
-#             video_id = youtube_url.split("v=")[-1]
-#             transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        for entry in transcript_json_output_dict:
+            entry["end"] = entry["start"] + entry["duration"]
+        return transcript_json_output_dict
 
-#             for transcript in transcript_list:
-#                 if transcript.is_generated or transcript.language_code:
-#                     try:
-#                         full_transcript = " ".join(
-#                             [part["text"] for part in transcript.fetch()]
-#                         )
-#                         return full_transcript
-#                     except Exception as e:
-#                         LOGGER.debug(f"Error fetching transcript: {e}")
-#                         continue
-
-#             raise Exception("No suitable transcript found.")
-#         except Exception as e:
-#             LOGGER.debug(f"Error during transcription: {e}")
-#             return None
-
+    def _end_time(self, start: float, duration: float):
+        return start + duration
 
 if __name__ == "__main__":
     youtube_url = "https://www.youtube.com/watch?v=MXrdD5cc6Ao"
@@ -155,14 +141,5 @@ if __name__ == "__main__":
     audio_dummy = Audio(audio_file=None, source=youtube_url)
     language = "deas"
     transcript = yt_transcriber.transcribe(audio=audio_dummy, language=language)
-    LOGGER.debug(transcript.translation_languages)
-
-
-# try:
-#     transcript = YT_Transcriber().transcribe(youtube_url=youtube_url)
-#     if transcript:
-#         print(f"Transcript: {transcript}")
-#     else:
-#         LOGGER.debug("Failed to retrieve a transcript.")
-# except Exception as e:
-#     LOGGER.debug(f"An error occurred: {e}")
+    LOGGER.debug(transcript.json_output)
+    LOGGER.debug(transcript.text)
