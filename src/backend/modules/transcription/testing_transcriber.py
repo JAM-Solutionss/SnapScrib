@@ -54,5 +54,6 @@ if __name__ == "__main__":
 
     yt_url = "https://www.youtube.com/watch?v=-HV0B8pHjuA"
     youtube_transcriber = get_transcriber("youtube")
-    audio_dummy = Audio(audio_file=yt_url, ource=yt_url)
+    audio_dummy = Audio(audio_file=yt_url, source=yt_url)
     transcription = youtube_transcriber.transcribe(audio_dummy)
+    print(transcription)

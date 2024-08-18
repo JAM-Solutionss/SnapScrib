@@ -15,9 +15,15 @@ from modules.audio.audio_data import Audio
 operating_system = sys.platform
 if operating_system == "darwin":
     from lightning_whisper_mlx import LightningWhisperMLX, Whisper
+else:
+    LightningWhisperMLX = None
+    Whisper = None
 
 
 class LightningMlxTranscriber(Transcriber):
+    def __init__(self) -> None:
+        if LightningMlxTranscriber is None:
+            raise ImportError("LightningMlxTranscriber not available on this OS")
 
     supported_models = [
         "tiny",
