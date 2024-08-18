@@ -11,9 +11,11 @@ from utils.logger_config import LOGGER
 if sys.platform == "darwin":
     import mlx_whisper
 
+
 class MlxTranscriber:
     def transcribe(self, audio: Audio) -> Transcription:
-        pass
+        result = mlx_whisper.transcribe(audio, word_timestamps=True)
+        return " ".join(text for text in result["segments"])
 
 
 # class MLX_Transcriber(Transcriber):

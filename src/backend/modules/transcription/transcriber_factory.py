@@ -60,7 +60,10 @@ def get_transcriber(transcriber_type: str = None) -> Transcriber:
         )
     else:
         if transcriber_type.lower() in transcribers:
-            if operating_system in transcribers[transcriber_type]["supported_operating_systems"]:
+            if (
+                operating_system
+                in transcribers[transcriber_type]["supported_operating_systems"]
+            ):
                 return transcribers[transcriber_type]["transcriber_class"]
             else:
                 raise ValueError(
@@ -68,7 +71,6 @@ def get_transcriber(transcriber_type: str = None) -> Transcriber:
                 )
         else:
             raise ValueError(f"Unknown transcriber type: {transcriber_type}")
-
 
 
 # from yt_transcriber import YT_Transcriber
@@ -105,8 +107,8 @@ def get_transcriber(transcriber_type: str = None) -> Transcriber:
 
 
 # if __name__ == "__main__":
-    # transcriber = get_transcriber()
-    # if transcriber:
-    #     LOGGER.info(f"Using transcriber: {transcriber.__class__.__name__}")
-    # else:
-    #     LOGGER.error("Failed to choose a transcriber.")
+# transcriber = get_transcriber()
+# if transcriber:
+#     LOGGER.info(f"Using transcriber: {transcriber.__class__.__name__}")
+# else:
+#     LOGGER.error("Failed to choose a transcriber.")
