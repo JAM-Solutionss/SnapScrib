@@ -64,8 +64,8 @@ if __name__ == "__main__":
     #     audio=audio_dummy, language=target_language
     # )
     # LOGGER.debug(transcription.json_output)
-    # # LOGGER.debug(transcription.json_output_dict)
-    # # LOGGER.debug(transcription.text)
+    # LOGGER.debug(transcription.json_output_dict)
+    # LOGGER.debug(transcription.text)
     
     ### Testing WhisperTranscriber ###
     current_dir = os.getcwd()

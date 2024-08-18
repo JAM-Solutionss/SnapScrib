@@ -40,7 +40,7 @@ class WhisperTranscriber(Transcriber):
         
         segments = self._add_duration_to_segments(segments)
         
-        json_output = self._create_json_output(segments)
+        json_output = self._get_json_output(segments)
         
         return Transcription(json_output=json_output)
         
@@ -72,7 +72,7 @@ class WhisperTranscriber(Transcriber):
             segment["duration"] = segment["end"] - segment["start"]
         return segments       
     
-    def _create_json_output(self, segments: list) -> str:
+    def _get_json_output(self, segments: list) -> str:
         """Formatting segments to required JSON format of Transcription dataclass and returning the json string"""
         json_output = []
         

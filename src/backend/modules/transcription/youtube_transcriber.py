@@ -78,15 +78,14 @@ class YoutubeTranscriber(Transcriber):
 
         transcript_output = transcript.fetch()
 
-        formatted_transcript_outputs = self._get_formatted_transcripts(
+        json_output = self._get_json_output(
             transcript_output=transcript_output
         )
+        
+        json_output_formatted = self._formatted_json_output(json_output)
 
         return Transcription(
-            text=formatted_transcript_outputs["text"],
-            json_output=self._formatted_json_output(
-                formatted_transcript_outputs["json"]
-            ),
+            json_output=json_output_formatted,
         )
 
     def _get_youtube_video_id(self, url: str) -> str:
@@ -161,17 +160,11 @@ class YoutubeTranscriber(Transcriber):
         )
         return transcript
 
-    def _get_formatted_transcripts(self, transcript_output: str) -> dict:
+    def _get_json_output(self, transcript_output: str) -> str:
         """Return a dictionary of formatted transcript outputs"""
-        formatted_transcripts = {}
-        for formatter_name, formatter in self.formatters.items():
-            # LOGGER.debug(f"Formatting transcript to {formatter_name} format")
-            # LOGGER.debug(formatter)
-            formatted_transcripts[formatter_name] = formatter.format_transcript(
-                transcript_output
-            )
 
-        return formatted_transcripts
+        json_output = self.formatters["json"].format_transcript(transcript_output)
+        return json_output
 
     def _formatted_json_output(self, transcript_json_output: str) -> str:
         """Return a formatted JSON output with end times calculated"""
