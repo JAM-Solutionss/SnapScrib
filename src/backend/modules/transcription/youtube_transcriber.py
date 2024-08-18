@@ -1,11 +1,7 @@
 from modules.audio.audio_data import Audio
 from utils.logger_config import LOGGER
-from cgitb import text
-from email.mime import audio
 import os
-from re import T
 import sys
-from typing import Any
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import JSONFormatter, TextFormatter
 from transcriber_interface import Transcriber
