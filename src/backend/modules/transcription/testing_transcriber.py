@@ -1,3 +1,4 @@
+from email.mime import audio
 import sys
 import os
 
@@ -54,14 +55,25 @@ if __name__ == "__main__":
 
     ### Testing YoutubeTranscriber ###
 
-    yt_url = "https://www.youtube.com/watch?v=-HV0B8pHjuA"
-    transcriber_class = get_transcriber("youtube")
-    youtube_transcriber = transcriber_class()
-    audio_dummy = Audio(audio_file=None, source=yt_url)
-    target_language = "de"
-    transcription = youtube_transcriber.transcribe(
-        audio=audio_dummy, language=target_language
-    )
-    LOGGER.debug(transcription.json_output)
-    # LOGGER.debug(transcription.json_output_dict)
-    # LOGGER.debug(transcription.text)
+    # yt_url = "https://www.youtube.com/watch?v=-HV0B8pHjuA"
+    # transcriber_class = get_transcriber("youtube")
+    # youtube_transcriber = transcriber_class()
+    # audio_dummy = Audio(audio_file=None, source=yt_url)
+    # target_language = "de"
+    # transcription = youtube_transcriber.transcribe(
+    #     audio=audio_dummy, language=target_language
+    # )
+    # LOGGER.debug(transcription.json_output)
+    # # LOGGER.debug(transcription.json_output_dict)
+    # # LOGGER.debug(transcription.text)
+    
+    ### Testing WhisperTranscriber ###
+    current_dir = os.getcwd()
+    audio_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))), r"youtube_audio\output\audio.mp3")
+    print(audio_file)
+    
+
+    audio = Audio(audio_file=audio_file, source=audio_file)
+    transcriber_class = get_transcriber("whisper")
+    whisper_transcriber = transcriber_class()
+    transcription = whisper_transcriber.transcribe(audio=audio)
