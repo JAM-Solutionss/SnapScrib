@@ -29,10 +29,7 @@ class WhisperTranscriber(Transcriber):
         LOGGER.info(f"Loaded Whisper model: {self.model}")
         LOGGER.info(f"Transcriber is set to {self.device.upper()}-mode.")
 
-    def transcribe(self, audio: Audio) -> Transcription:
-        pass
 
-    # class Whisper_Transcriber(Transcriber):
     def transcribe(self, audio: Audio) -> Transcription:
 
         transcript = self.model.transcribe(audio=audio.audio_file)
@@ -44,7 +41,7 @@ class WhisperTranscriber(Transcriber):
         
         return Transcription(json_output=json_output)
         
-        
+    # class Whisper_Transcriber(Transcriber):
         # segments = transcript["segments"]
 
         # json_output = []
