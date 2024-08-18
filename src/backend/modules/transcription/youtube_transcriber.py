@@ -184,5 +184,3 @@ class YoutubeTranscriber(Transcriber):
     def _end_time(self, start: float, duration: float) -> float:
         """Return end time calculated from start time and duration"""
         return start + duration
-
-
