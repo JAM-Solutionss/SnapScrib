@@ -5,7 +5,7 @@ summarizer = {
     "llama": Llama_Summarizer
 }
 
-def get_summarizer(summarizer_model: str=None) -> Summarizer:
+def get_summarizer(summarizer_model: str=None, style: str='professional') -> Summarizer:
     """
     Get a summarizer instance based on the specified model.
 
