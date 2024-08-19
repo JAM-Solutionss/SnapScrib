@@ -1,9 +1,9 @@
-from email.mime import audio
 import sys
 import os
 
 from numpy import source
 
+from src.backend.modules.transcription.whisper_transcriber import WhisperTranscriber
 from transcriber_factory import get_transcriber
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -22,6 +22,7 @@ def test_YoutubeTranscriber() -> None:
     LOGGER.debug(transcription.json_output)
     LOGGER.debug(transcription.json_output_dict)
     LOGGER.debug(transcription.text_output)
+    return transcription
     
 def test_WhisperTranscriber() -> None:
     current_dir = os.getcwd()
@@ -31,14 +32,15 @@ def test_WhisperTranscriber() -> None:
 
     audio = Audio(audio_file=audio_file, source=audio_file)
     transcriber_class = get_transcriber("whisper")
-    whisper_transcriber = transcriber_class()
-    transcription = whisper_transcriber.transcribe(audio=audio)
+    transcriber = transcriber_class()
+    transcription = transcriber.transcribe(audio=audio)
     LOGGER.debug(transcription.json_output)
     LOGGER.debug(transcription.json_output_dict)
     LOGGER.debug(transcription.text_output)
+    return transcription
 
 if __name__ == "__main__":
-    # test_YoutubeTranscriber()
-    test_WhisperTranscriber()
+    transc = test_YoutubeTranscriber()
+    # transc = test_WhisperTranscriber()
 
     

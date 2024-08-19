@@ -10,7 +10,7 @@ class Transcription:
         json_output: dict - JSON output from transcription model in the format of (timestamps in seconds): 
         [{"text": "Hey there", "start": 7.58, "duration": 1.29, "end": 8.87}, ...]
     """
-    json_output: dict
+    json_output: str
     
     @property
     def json_output_dict(self):

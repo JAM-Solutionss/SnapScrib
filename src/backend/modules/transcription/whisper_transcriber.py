@@ -18,6 +18,21 @@ from transcriber_interface import Transcriber
 
 
 class WhisperTranscriber(Transcriber):
+    """
+    The WhisperTranscriber class is a Transcriber implementation that uses the Whisper speech recognition model to transcribe audio files.
+
+    The class has the following attributes:
+    - `default_model`: The default Whisper model to use, set to "base".
+    - `available_models`: A list of available Whisper models that can be used.
+    - `has_cuda`: A boolean indicating whether CUDA is available for GPU acceleration.
+    - `device`: The device to use for the Whisper model, either "cuda" if available or "cpu".
+
+    The `__init__` method loads the specified Whisper model onto the selected device and logs information about the loaded model and the device being used.
+
+    The `transcribe` method takes an `Audio` object, transcribes the audio, and returns a `Transcription` object containing the transcription in JSON format. The method processes the transcript segments, adding duration information to each segment and formatting the output as a JSON string.
+
+    The `_add_duration_to_segments` and `_get_json_output` methods are helper methods used by the `transcribe` method to process the transcript segments.
+    """
 
     default_model = "base"
     available_models = ["tiny", "base", "small", "medium", "large"]
