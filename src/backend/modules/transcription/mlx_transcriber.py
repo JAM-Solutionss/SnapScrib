@@ -1,7 +1,5 @@
-from datetime import timedelta
 import os
 import sys
-from transcriber_interface import Transcriber
 from transcription_data import Transcription
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
