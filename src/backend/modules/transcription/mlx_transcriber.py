@@ -1,5 +1,6 @@
 import os
 import sys
+from transcriber_interface import Transcriber
 from transcription_data import Transcription
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -10,12 +11,24 @@ if sys.platform == "darwin":
     import mlx_whisper
 
 
-class MlxTranscriber:
+class MlxTranscriber(Transcriber):
     def __init__(self) -> None:
         if MlxTranscriber is None:
             raise ImportError("LightningMlxTranscriber not available on this OS")
 
     def transcribe(self, audio: Audio) -> Transcription:
+        """
+        Transcribes the provided audio using the MLX Whisper model and returns the transcription as a Transcription object.
+
+        Args:
+            audio (Audio): The audio data to be transcribed.
+
+        Returns:
+            Transcription: The transcription of the audio data.
+
+        Raises:
+            Exception: If the transcription process fails or no text is returned.
+        """
 
         LOGGER.info("Starting the transcription process...")
 
