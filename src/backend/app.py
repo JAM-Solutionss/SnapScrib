@@ -1,6 +1,6 @@
 import os
 import sys
-from modules.transcription.transcribe import check_os
+from src.backend.modules.transcriber.transcriber_factory import check_os
 from modules.youtube_audio.extract_audio import download_youtube_video_as_audio
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'utils')))
