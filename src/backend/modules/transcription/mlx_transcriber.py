@@ -13,25 +13,51 @@ if sys.platform == "darwin":
 
 
 class MlxTranscriber:
+    def __init__(self) -> None:
+        if MlxTranscriber is None:
+            raise ImportError("LightningMlxTranscriber not available on this OS")
+
     def transcribe(self, audio: Audio) -> Transcription:
-        result = mlx_whisper.transcribe(audio, word_timestamps=True)
-        return " ".join(text for text in result["segments"])
 
+        LOGGER.info("Starting the transcription process...")
 
-# class MLX_Transcriber(Transcriber):
-#     def transcribe(audio_file: str, youtube_url: str) -> str:
-#         path_or_hf_repo = "mlx-community/whisper-large-v3-mlx"
-#         speech_file = audio_file
-#         result = mlx_whisper.transcribe(speech_file, word_timestamps=True)
-#         text = result["text"]
-#         segments = result["segments"]
+        try:
+            result = mlx_whisper.transcribe(audio, word_timestamps=True)
+            LOGGER.info("Transcription process finished.")
+        except Exception as e:
+            LOGGER.error(f"Transcription failed with error: {e}")
+            raise
 
-#         output_list = []
+        text = " ".join(text for text in result["segments"])
 
-#         for segment in segments:
-#             text = segment["text"]
+        if text is None:
+            raise Exception("Transcription failed, no text returned")
 
-#             output_list.append(text)
-#             full_text = " ".join(output_list)
+        json_result = self._create_json_result(
+            result
+        )  # _create_json_result needs to be implemented correctly to return the json result
 
-#         return full_text
+        transcription = Transcription(json_output=json_result)
+        return transcription
+
+    def _convert_millis(self, millis):
+        LOGGER.info("Converting milliseconds to hh:mm:ss,ms format...")
+        seconds = (millis / 1000) % 60
+        minutes = (millis / (1000 * 60)) % 60
+        hours = (millis / (1000 * 60 * 60)) % 24
+        millis = millis % 1000
+        return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02},{int(millis):03}"
+
+    def _create_json(self, transcription):
+        LOGGER.info("Creating JSON file content...")
+        json_content = []
+        for idx, (start, end, text) in enumerate(transcription, start=1):
+            segment = {
+                "index": idx,
+                "start_time": self._convert_millis(start),
+                "end_time": self._convert_millis(end),
+                "text": text,
+            }
+            json_content.append(segment)
+
+        return json_content

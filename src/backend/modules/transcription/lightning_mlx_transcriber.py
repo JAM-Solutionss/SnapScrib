@@ -66,6 +66,7 @@ class LightningMlxTranscriber(Transcriber):
         LOGGER.info(f"Model {model} loaded successfully.")
 
         LOGGER.info("Starting the transcription process...")
+
         try:
             result = whisper.transcribe(audio.audio_file)
             LOGGER.info("Transcription process finished.")
@@ -74,46 +75,45 @@ class LightningMlxTranscriber(Transcriber):
             raise
 
         text = result["text"]
-        
+
         if text is None:
             raise Exception("Transcription failed, no text returned")
-        
+
         LOGGER.info("Transcription result obtained.")
-        
+
         json_result = self._create_json_result(
             result
         )  # _create_json_result needs to be implemented correctly to return the json result
-        
+
         transcription = Transcription(json_output=json_result)
         return transcription
 
+    # class Lightning_MLX_Transcriber(Transcriber):
+    #     def transcribe(audio_file: str, youtube_url: str) -> str:
+    #         LOGGER.info(f"Starting transcription for file: {audio_file}")
 
-# class Lightning_MLX_Transcriber(Transcriber):
-#     def transcribe(audio_file: str, youtube_url: str) -> str:
-#         LOGGER.info(f"Starting transcription for file: {audio_file}")
+    #         try:
+    #             whisper = LightningWhisperMLX(
+    #                 model="distil-large-v3", batch_size=12, quant=None
+    #             )
+    #             LOGGER.info("Model loaded successfully.")
 
-#         try:
-#             whisper = LightningWhisperMLX(
-#                 model="distil-large-v3", batch_size=12, quant=None
-#             )
-#             LOGGER.info("Model loaded successfully.")
+    #             LOGGER.info("Starting the transcription process...")
+    #             result = whisper.transcribe(audio_file)
+    #             LOGGER.info("Transcription process finished.")
 
-#             LOGGER.info("Starting the transcription process...")
-#             result = whisper.transcribe(audio_file)
-#             LOGGER.info("Transcription process finished.")
+    #             text = result.get("text", "")
+    #             if text:
+    #                 LOGGER.info("Transcription result obtained.")
+    #             else:
+    #                 LOGGER.warning("Transcription result is empty.")
 
-#             text = result.get("text", "")
-#             if text:
-#                 LOGGER.info("Transcription result obtained.")
-#             else:
-#                 LOGGER.warning("Transcription result is empty.")
+    #             print(text)
+    #             return text
 
-#             print(text)
-#             return text
-
-#         except Exception as e:
-#             LOGGER.error(f"An error occurred during transcription: {str(e)}")
-#             return ""
+    #         except Exception as e:
+    #             LOGGER.error(f"An error occurred during transcription: {str(e)}")
+    #             return ""
 
     def _convert_millis(self, millis):
         LOGGER.info("Converting milliseconds to hh:mm:ss,ms format...")
@@ -123,7 +123,7 @@ class LightningMlxTranscriber(Transcriber):
         millis = millis % 1000
         return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02},{int(millis):03}"
 
-    # This needs to be implemnted correctly to return the json_result
+    # This needs to be implemented correctly to return the json_result
     def _create_json(self, transcription):
         LOGGER.info("Creating JSON file content...")
         json_content = []
