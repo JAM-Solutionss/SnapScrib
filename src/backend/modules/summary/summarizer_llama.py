@@ -5,20 +5,21 @@ from dotenv import load_dotenv
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
-from modules.summarizer.summarizer_interface import Summarizer
+from modules.summary.summarizer_interface import Summarizer
+from modules.summary.summary_data import Summary
 
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 
-class Llama_Summarizer(Summarizer):
+class LlamaSummarizer(Summarizer):
 
     default_style = "neutral"
     available_styles = ["professional", "friendly", "funny", "neutral"]
 
     def summarize(
         self, transcription: str, style: str = None, length: float = 0.5
-    ) -> str | None:
+    ) -> Summary:
         """
         Summarizes the given transcription text using the Llama language model.
 

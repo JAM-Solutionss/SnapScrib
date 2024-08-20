@@ -1,4 +1,4 @@
-from llama_summarizer import Llama_Summarizer
+from src.backend.modules.summary.summarizer_llama import Llama_Summarizer
 from summarizer_interface import Summarizer
 
 summarizer = {
