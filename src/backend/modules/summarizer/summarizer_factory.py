@@ -2,10 +2,10 @@ from llama_summarizer import Llama_Summarizer
 from summarizer_interface import Summarizer
 
 summarizer = {
-    "llama": Llama_Summarizer
+    "llama": Llama_Summarizer()
 }
 
-def get_summarizer(summarizer_model: str=None, style: str='professional') -> Summarizer:
+def get_summarizer(summarizer_model: str=None) -> Summarizer:
     """
     Get a summarizer instance based on the specified model.
 

@@ -13,26 +13,30 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 class Llama_Summarizer(Summarizer):
 
-    default_style = "professional"
-    available_styles = ["professional", "friendly", "funny"]
+    default_style = "neutral"
+    available_styles = ["professional", "friendly", "funny", "neutral"]
 
-    def summarize(self, summary: str, style: str):
+    def summarize(
+        self, transcription: str, style: str = None, length: float = 0.5
+    ) -> str | None:
         """
-        Summarizes the given text using the Llama language model.
+        Summarizes the given transcription text using the Llama language model.
 
         Args:
-            summary (str): The text to be summarized.
-            style (str): The style of the system message, can be "professional", "friendly", or "funny".
+            transcription (str): The text to be summarized.
+            style (str, optional): The style of the system message, can be "professional", "friendly", "funny", or "neutral". Defaults to "neutral".
+            length (float, optional): The target length of the summary as a fraction of the original text length. Defaults to 0.5.
 
         Returns:
-            str: The summarized text, or "No summary available." if an error occurs.
+            str or None: The summarized text, or None if an error occurs during the API request.
         """
-        sys_msg = self._get_sys_msg(style)
-        LOGGER.info("Using style: " + style)
+
+        sys_msg = self._get_sys_msg(style, length)
+        LOGGER.info("Using style: " + str(style))
 
         message = [
             {"role": "system", "content": sys_msg},
-            {"role": "user", "content": summary},
+            {"role": "user", "content": transcription},
         ]
 
         try:
@@ -42,6 +46,11 @@ class Llama_Summarizer(Summarizer):
 
             if hasattr(response, "choices") and len(response.choices) > 0:
                 LOGGER.info("Summary successful")
+                LOGGER.info(f"Summary: {response.choices[0].message.content}")
+                LOGGER.info(f"Original text: {len(transcription)}")
+                LOGGER.info(
+                    f"Words: {len(str(response.choices[0].message.content).split())}"
+                )
                 return response.choices[0].message.content
 
             LOGGER.debug("No summary available.")
@@ -51,36 +60,44 @@ class Llama_Summarizer(Summarizer):
             LOGGER.debug(f"Error during API request: {e}")
             return None
 
-    def _get_sys_msg(self, style):
+    def _get_sys_msg(self, style: str, length: float) -> str:
         """
-        Retrieves the system message for the Llama summarizer based on the specified style.
+        Helper function to generate the system message for the Llama language model based on the specified style and target summary length.
 
         Args:
-            style (str): The style of the system message, can be "professional", "friendly", or "funny".
+            style (str): The style of the system message, can be "professional", "friendly", "funny", or "neutral".
+            length (float): The target length of the summary as a fraction of the original text length.
 
         Returns:
-            str: The system message for the specified style.
+            str: The generated system message.
         """
         styles = {
             "professional": "You are an AI that gets a scripted video. You should then summarize this and "
             "lift the most important points. Keep the order when summarizing. Do not add "
             "anything and do not deviate. Please write this in sentences and without *. "
             "Leave out the speech and just summarize the information. The summary should "
-            "be about a quarter to a third of the length of the original text. do not indicate "
+            f"be about {length*100}% of the length of the original text, not shorter or longer. do not indicate "
             "that this is the summary.",
             "friendly": "You are an AI that gets a scripted video. You should then summarize this and lift "
             "the most important points. Keep the order when summarizing. Do not add anything and "
             "do not deviate. Please write this in sentences and without *. Leave out the speech "
-            "and just summarize the information. The summary should be about a quarter to a third "
-            "of the length of the original text. do not indicate that this is the summary.",
+            f"and just summarize the information. The summary should be about {length*100}% "
+            "of the length of the original text, not shorter or longer. do not indicate that this is the summary.",
             "funny": "You are an AI that gets a scripted video. You should then summarize this and lift the "
             "most important points. Keep the order when summarizing. Do not add anything and do not "
             "deviate. Please write this in sentences and without *. Leave out the speech and just "
-            "summarize the information. The summary should be about a quarter to a third of the "
-            "length of the original text. do not indicate that this is the summary.",
+            f"summarize the information. The summary should be about {length*100}% of the "
+            "length of the original text, not shorter or longer. do not indicate that this is the summary.",
+            "neutral": "You are an AI that gets a scripted video. You should then summarize this and lift the "
+            "most important points. Keep the order when summarizing. Do not add anything and do not "
+            "deviate. Please write this in sentences and without *. Leave out the speech and just "
+            f"summarize the information. The summary should be about {length*100}% of the "
+            "length of the original text, not shorter or longer. do not indicate that this is the summary.",
         }
 
         if style in styles:
+            LOGGER.info("SYS PROMPT: " + styles[style])
             return styles[style]
         else:
-            return self.default_style
+            LOGGER.info("SYS PROMPT: " + styles[self.default_style])
+            return styles[self.default_style]
