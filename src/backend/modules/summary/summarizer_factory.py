@@ -1,11 +1,14 @@
-from src.backend.modules.summary.summarizer_llama import Llama_Summarizer
-from summarizer_interface import Summarizer
+import os
+import sys
 
-summarizer = {
-    "llama": Llama_Summarizer()
-}
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from modules.summary.summarizer_llama import LlamaSummarizer
+from modules.summary.summarizer_interface import Summarizer
 
-def get_summarizer(summarizer_model: str=None) -> Summarizer:
+summarizer = {"llama": LlamaSummarizer()}
+
+
+def get_summarizer(summarizer_model: str = None) -> Summarizer:
     """
     Get a summarizer instance based on the specified model.
 
