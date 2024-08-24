@@ -3,7 +3,7 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from audio.audio_data import Audio
-from src.backend.modules.audio.audio_extractor_interface import AudioExtractor
+from audio_extractor_interface import AudioExtractor
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
@@ -11,7 +11,7 @@ from utils.logger_config import LOGGER
 
 class FileExtractor(AudioExtractor):
 
-    def extract(audio_source: str) -> Audio:
+    def extract(self, audio_source: str) -> Audio:
         """
         Extract audio from a file source.
 

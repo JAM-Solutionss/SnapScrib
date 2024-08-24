@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import sys
 import mutagen
 import os
+from urllib.parse import unquote
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
@@ -56,3 +57,10 @@ class Audio:
                 "youtu.be/",
             )
         )
+        
+    def _sanitize_path(self, path: str) -> str:
+        # Decode URL-encoded characters
+        path = unquote(path)
+        # Replace problematic characters
+        path = re.sub(r'[<>:"/\\|?*]', '_', path)
+        return os.path.abspath(path)
