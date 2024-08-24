@@ -52,7 +52,7 @@ class YoutubeExtractor(AudioExtractor):
         Returns:
             Audio: An Audio object containing the extracted audio file path and the original source URL.
         """
-        LOGGER.info(f"Extracting audio from YouTube video {audio}...")
+        LOGGER.info(f"Extracting audio from YouTube video {audio_source}...")
         options = self._set_dl_opts()
         audio_file_path = self._get_audio_file_path(audio_source)
         self._donwload_audio(audio_source, options)
