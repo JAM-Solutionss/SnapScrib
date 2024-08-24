@@ -10,6 +10,29 @@ from utils.logger_config import LOGGER
 
 @dataclass
 class Audio:
+    """
+    A dataclass representing an audio file.
+
+    Attributes:
+        audio_file (str): The path to the audio file.
+        source (str): The source of the audio file, which could be a local path or a URL.
+
+    Properties:
+        duration (float): The duration of the audio file in seconds.
+        file_size (float): The size of the audio file in bytes.
+        format (str): The format or MIME type of the audio file.
+        is_youtube_source (bool): Indicates whether the audio source is a YouTube URL.
+
+    Methods:
+        duration(): Calculates and returns the duration of the audio file.
+        file_size(): Returns the size of the audio file.
+        format(): Determines and returns the format of the audio file.
+        is_youtube_source(): Checks if the audio source is a YouTube URL.
+
+    Raises:
+        ValueError: If the audio file is invalid or cannot be processed.
+    """
+    
     audio_file: str
     source: str
 
@@ -57,10 +80,3 @@ class Audio:
                 "youtu.be/",
             )
         )
-        
-    def _sanitize_path(self, path: str) -> str:
-        # Decode URL-encoded characters
-        path = unquote(path)
-        # Replace problematic characters
-        path = re.sub(r'[<>:"/\\|?*]', '_', path)
-        return os.path.abspath(path)
