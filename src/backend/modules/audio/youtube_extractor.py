@@ -33,7 +33,6 @@ class YoutubeExtractor(AudioExtractor):
             ydl.download([url])
     
     def _set_dl_opts(self) -> dict:
-        LOGGER.debug(os.path.join(self._default_audio_file_save_path,self.outtmpl))
         ydl_opts = {
             'format': self.format,
             'postprocessors': self.postprocessors,

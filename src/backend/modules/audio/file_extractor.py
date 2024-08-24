@@ -10,6 +10,9 @@ from utils.logger_config import LOGGER
 
 
 class FileExtractor(AudioExtractor):
+    
+    def __init__(self):
+        super().__init__()
 
     def extract(self, audio_source: str) -> Audio:
         """
