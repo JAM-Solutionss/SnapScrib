@@ -7,6 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 from utils.logger_config import LOGGER
 from modules.summary.summarizer_interface import Summarizer
 from modules.summary.summary_data import Summary
+from modules.transcription.transcription_data import Transcription
 
 load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
@@ -18,7 +19,7 @@ class LlamaSummarizer(Summarizer):
     available_styles = ["professional", "friendly", "funny", "neutral"]
 
     def summarize(
-        self, transcription: str, style: str = None, length: float = 0.5
+        self, transcription: Transcription, style: str = None, length: float = 0.5
     ) -> Summary:
         """
         Summarizes the given transcription text using the Llama language model.
@@ -37,7 +38,7 @@ class LlamaSummarizer(Summarizer):
 
         message = [
             {"role": "system", "content": sys_msg},
-            {"role": "user", "content": transcription},
+            {"role": "user", "content": transcription.text_output},
         ]
 
         try:
