@@ -3,9 +3,11 @@ import sys
 import os
 
 
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from audio.audio_data import Audio
 from audio.audio_extractor_interface import AudioExtractor
+from audio.file_extractor import FileExtractor
 from transcription.transcriber_interface import Transcriber
 from transcription.transcription_data import Transcription
 
@@ -15,3 +17,7 @@ class AppData:
     audio: Audio = None
     transcriber: Transcriber = None
     transcription: Transcription = None
+    # summarizer: summarizer = None
+    # summary: Summary = None
+    # ...other attributes
+    
