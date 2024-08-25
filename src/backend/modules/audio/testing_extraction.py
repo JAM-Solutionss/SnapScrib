@@ -34,5 +34,5 @@ def test_audio_extraction_from_youtube():
 
 
 if __name__ == "__main__":
-    test_audio_extraction_from_file()
+    # test_audio_extraction_from_file()
     test_audio_extraction_from_youtube()

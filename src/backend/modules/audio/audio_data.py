@@ -39,7 +39,6 @@ class Audio:
     @property
     def duration(self) -> float:
         """:return: duration of the audio file in seconds"""
-        LOGGER.debug(f"Getting duration for audio file {self.audio_file}...")
         audio = mutagen.File(self.audio_file)
         if audio:
             return int(audio.info.length)
@@ -48,8 +47,8 @@ class Audio:
 
     @property
     def file_size(self) -> float:
-        """:return: file size of the audio file in bytes"""
-        return os.path.getsize(self.audio_file)
+        """:return: file size of the audio file in megabytes"""
+        return os.path.getsize(self.audio_file) / (1024 * 1024)
 
     @property
     def format(self) -> str:
