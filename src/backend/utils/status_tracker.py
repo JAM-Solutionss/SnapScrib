@@ -26,6 +26,20 @@ class FunctionTracker:
 
     @classmethod
     def set_current_function(self, func_name: str) -> None:
+        """
+        Sets the current function being tracked and adds it to the function call stack.
+        
+        This method is part of the `FunctionTracker` class, which is used to track the
+        execution of functions in the application. It provides a way to set the current
+        function being tracked and add it to the function call stack, which can be
+        useful for logging, debugging, or other purposes.
+        
+        Args:
+            func_name (str): The name of the function to be tracked.
+        
+        Returns:
+            None
+        """
         self._local.current_function = func_name
         if not hasattr(self._local, "function_stack"):
             self._local.function_stack = deque()
@@ -49,6 +63,21 @@ class FunctionTracker:
 
     @classmethod
     def get_function_stack(self) -> Deque[Tuple[str, float]]:
+        """
+        Returns the function call stack maintained by the `FunctionTracker` class.
+        
+        This method retrieves the `function_stack` attribute from the thread-local 
+        storage of the `FunctionTracker` class. The `function_stack` is a deque (double-ended queue) 
+        that stores the names of the functions that have been entered and the times at 
+        which they were entered.
+        
+        If the `function_stack` attribute does not exist in the thread-local storage, 
+        this method returns an empty deque.
+        
+        Returns:
+            Deque[Tuple[str, float]]: The function call stack, where each element 
+            is a tuple containing the name of the function and the time at which it was entered.
+        """
         return getattr(self._local, "function_stack", deque())
 
     @classmethod
