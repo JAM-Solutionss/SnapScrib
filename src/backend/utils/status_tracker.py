@@ -10,16 +10,16 @@ class FunctionTracker:
     @classmethod
     def current_function(self) -> Optional[str]:
         """
-        Returns the name of the current function being tracked, 
+        Returns the name of the current function being tracked,
         or `None` if no function is currently being tracked.
 
-        This method is part of the `FunctionTracker` class, which is used 
-        to track the execution of functions in the application. 
-        It provides a way to retrieve the name of the function that is currently 
+        This method is part of the `FunctionTracker` class, which is used
+        to track the execution of functions in the application.
+        It provides a way to retrieve the name of the function that is currently
         being tracked, which can be useful for logging, debugging, or other purposes.
 
         Returns:
-            Optional[str]: The name of the current function being tracked, 
+            Optional[str]: The name of the current function being tracked,
             or `None` if no function is currently being tracked.
         """
         return getattr(self._local, "current_function", None)
@@ -28,15 +28,15 @@ class FunctionTracker:
     def set_current_function(self, func_name: str) -> None:
         """
         Sets the current function being tracked and adds it to the function call stack.
-        
+
         This method is part of the `FunctionTracker` class, which is used to track the
         execution of functions in the application. It provides a way to set the current
         function being tracked and add it to the function call stack, which can be
         useful for logging, debugging, or other purposes.
-        
+
         Args:
             func_name (str): The name of the function to be tracked.
-        
+
         Returns:
             None
         """
@@ -65,17 +65,17 @@ class FunctionTracker:
     def get_function_stack(self) -> Deque[Tuple[str, float]]:
         """
         Returns the function call stack maintained by the `FunctionTracker` class.
-        
-        This method retrieves the `function_stack` attribute from the thread-local 
-        storage of the `FunctionTracker` class. The `function_stack` is a deque (double-ended queue) 
-        that stores the names of the functions that have been entered and the times at 
+
+        This method retrieves the `function_stack` attribute from the thread-local
+        storage of the `FunctionTracker` class. The `function_stack` is a deque (double-ended queue)
+        that stores the names of the functions that have been entered and the times at
         which they were entered.
-        
-        If the `function_stack` attribute does not exist in the thread-local storage, 
+
+        If the `function_stack` attribute does not exist in the thread-local storage,
         this method returns an empty deque.
-        
+
         Returns:
-            Deque[Tuple[str, float]]: The function call stack, where each element 
+            Deque[Tuple[str, float]]: The function call stack, where each element
             is a tuple containing the name of the function and the time at which it was entered.
         """
         return getattr(self._local, "function_stack", deque())
@@ -122,9 +122,9 @@ class track_function:
         """
         Initializes a new instance of the `track_function` context manager.
 
-        The `track_function` context manager is used to track the execution 
-        of a function. When the context manager is entered, it sets the current 
-        function being tracked in the `FunctionTracker` class. When the context 
+        The `track_function` context manager is used to track the execution
+        of a function. When the context manager is entered, it sets the current
+        function being tracked in the `FunctionTracker` class. When the context
         manager is exited, it clears the current function being tracked.
 
         The `func` parameter is the function that will be tracked when the context manager is used.
@@ -133,11 +133,11 @@ class track_function:
 
     def __enter__(self):
         """
-        Sets the current function being tracked in the `FunctionTracker` 
+        Sets the current function being tracked in the `FunctionTracker`
         class to the qualified name of the decorated function.
 
-        This method is called when the context manager is entered, 
-        and it records the start time of the function call and adds it to 
+        This method is called when the context manager is entered,
+        and it records the start time of the function call and adds it to
         the function call stack maintained by the `FunctionTracker` class.
         """
         function_tracker.set_current_function(self.func.__qualname__)
