@@ -162,6 +162,17 @@ def track(func):
 
     This decorator can be used to measure the execution time of functions and
     provide insights into the call flow of an application.
+
+    USE:
+        @track over the function
+
+        callable methods
+            - `current_function`
+            - `set_current_function`
+            - `clear_current_function`
+            - `get_function_stack`
+            - `get_execution_time`
+            - `reset`
     """
 
     def wrapper(*args, **kwargs):
