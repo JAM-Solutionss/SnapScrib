@@ -3,15 +3,32 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from audio.audio_data import Audio
-from src.backend.modules.audio.audio_extractor_interface import AudioExtractor
+from audio_extractor_interface import AudioExtractor
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
 
 
 class FileExtractor(AudioExtractor):
+    """
+    A class for extracting audio from file sources.
 
-    def extract(audio_source: str) -> Audio:
+    This class implements the AudioExtractor interface and provides
+    functionality to extract audio data from file sources.
+
+    Attributes:
+        Inherits attributes from AudioExtractor.
+
+    Methods:
+        extract(audio_source: str) -> Audio:
+            Extracts audio from a given file source.
+    """
+
+        
+    def __init__(self):
+        super().__init__()
+
+    def extract(self, audio_source: str) -> Audio:
         """
         Extract audio from a file source.
 
