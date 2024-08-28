@@ -1,6 +1,6 @@
 import sys
 import os
-from lightning_mlx_transcriber import LightningMlxTranscriber
+# from lightning_mlx_transcriber import LightningMlxTranscriber
 from mlx_transcriber import MlxTranscriber
 from transcriber_interface import Transcriber
 from whisper_transcriber import WhisperTranscriber
@@ -23,7 +23,7 @@ transcribers = {
     },
     "lightning_mlx": {
         "supported_operating_systems": ["darwin"],
-        "transcriber_class": LightningMlxTranscriber,
+        "transcriber_class": MlxTranscriber,  # LightningMlxTranscriber
     },
     "youtube": {
         "supported_operating_systems": ["win32", "linux", "darwin"],

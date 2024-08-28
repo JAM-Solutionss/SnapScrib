@@ -20,7 +20,8 @@ def test_YoutubeTranscriber() -> None:
     LOGGER.debug(transcription.json_output_dict)
     LOGGER.debug(transcription.text_output)
     return transcription
-    
+
+
 def test_WhisperTranscriber() -> None:
     current_dir = os.getcwd()
     audio_file = os.path.join(
@@ -39,8 +40,32 @@ def test_WhisperTranscriber() -> None:
     return transcription
 
 
-if __name__ == "__main__":
-    transc = test_YoutubeTranscriber()
-    # transc = test_WhisperTranscriber()
+def test_mlx_transcriber() -> None:
+    """
+    Test the MLX transcriber by transcribing audio from a local file.
 
-    
+    The audio file is located at a hardcoded path relative to the current working directory.
+    The transcription results are logged using the LOGGER module.
+
+    Returns:
+        The transcription object containing the JSON output, JSON output dictionary,
+        and text output.
+    """
+    current_dir = os.getcwd()
+    audio_file = current_dir + "/data/audio.mp3"
+    print(audio_file)
+
+    audio = Audio(audio_file=audio_file, source=audio_file)
+    transcriber_class = get_transcriber("mlx")
+    transcriber = transcriber_class()
+    transcription = transcriber.transcribe(audio=audio)
+    LOGGER.debug(transcription.json_output)
+    LOGGER.debug(transcription.json_output_dict)
+    LOGGER.debug(transcription.text_output)
+    return transcription
+
+
+if __name__ == "__main__":
+    # transc = test_YoutubeTranscriber()
+    # transc = test_WhisperTranscriber()
+    test_mlx_transcriber()

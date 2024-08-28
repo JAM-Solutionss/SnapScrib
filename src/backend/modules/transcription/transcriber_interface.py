@@ -12,5 +12,5 @@ from audio.audio_data import Audio
 class Transcriber(ABC):
 
     @abstractmethod
-    def transcribe(audio: Audio) -> Transcription:
+    def transcribe(self, audio: Audio) -> Transcription:
         pass
