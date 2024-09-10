@@ -5,7 +5,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from utils.logger_config import LOGGER
 
-def download_youtube_video_as_audio(url, output_path='out'):
+def download_youtube_video_as_audio(url, output_dir="out"):
     try:
         # Ensure the output directory exists
         os.makedirs(output_path, exist_ok=True)

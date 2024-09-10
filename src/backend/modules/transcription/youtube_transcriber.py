@@ -1,5 +1,3 @@
-from modules.audio.audio_data import Audio
-from utils.logger_config import LOGGER
 import os
 import sys
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptList, Transcript
@@ -9,6 +7,8 @@ from transcription_data import Transcription
 import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from modules.audio.audio_data import Audio
+from utils.logger_config import LOGGER
 
 
 class YoutubeTranscriber(Transcriber):
@@ -78,10 +78,8 @@ class YoutubeTranscriber(Transcriber):
 
         transcript_output = transcript.fetch()
 
-        json_output = self._get_json_output(
-            transcript_output=transcript_output
-        )
-        
+        json_output = self._get_json_output(transcript_output=transcript_output)
+
         json_output_formatted = self._formatted_json_output(json_output)
 
         return Transcription(
@@ -177,3 +175,13 @@ class YoutubeTranscriber(Transcriber):
     def _end_time(self, start: float, duration: float) -> float:
         """Return end time calculated from start time and duration"""
         return start + duration
+
+
+if __name__ == "__main__":
+    audio = Audio(
+        audio_file="C:\\Users\\janni\\Developer\\SnapScrib\\dummy.mp3",
+        source="https://www.youtube.com/watch?v=JH4q65dZPvY",
+    )
+    y = YoutubeTranscriber()
+    transcription = json.dumps(json.loads(y.transcribe(audio).json_output), indent=4)
+    print(transcription)
