@@ -33,13 +33,13 @@ class YoutubeExtractor(AudioExtractor):
 
 
     _default_format = "bestvideo+bestaudio/best"
-    _deflaut_postprocessors = [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3"}]
+    _default_postprocessors = [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3"}]
     _default_outtmpl = "%(title)s.%(ext)s"
 
     def __init__(self, format=None, postprocessors=None, outtmpl=None) -> None:
         super().__init__()
         self.format = format or self._default_format
-        self.postprocessors = postprocessors or self._deflaut_postprocessors
+        self.postprocessors = postprocessors or self._default_postprocessors
         self.outtmpl = outtmpl or self._default_outtmpl
 
     def extract(self, audio_source: str) -> Audio:
@@ -81,3 +81,6 @@ class YoutubeExtractor(AudioExtractor):
                 + "."
                 + self.postprocessors[0]["preferredcodec"]
             )
+
+
+    
