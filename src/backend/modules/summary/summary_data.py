@@ -1,5 +1,10 @@
 from dataclasses import dataclass
+from traceback import StackSummary
 
 @dataclass 
 class Summary:
-    pass
+    text: str
+    
+    @property
+    def word_count(self):
+        return len(self.text.split())

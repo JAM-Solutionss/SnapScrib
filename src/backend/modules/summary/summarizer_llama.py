@@ -52,7 +52,8 @@ class LlamaSummarizer(Summarizer):
                 LOGGER.info(
                     f"Words: {len(str(response.choices[0].message.content).split())}"
                 )
-                return response.choices[0].message.content
+                summary_text = response.choices[0].message.content
+                return Summary(text=summary_text)
 
             LOGGER.debug("No summary available.")
             return None

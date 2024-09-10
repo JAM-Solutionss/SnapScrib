@@ -1,11 +1,16 @@
 from abc import ABC, abstractmethod
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from modules.summary.summary_data import Summary
 
 
 class Summarizer(ABC):
     @abstractmethod
     def summarize(
         self, transcription: str, style: str = "neutral", length: float = 0.3
-    ) -> str:
+    ) -> Summary:
         """
         Summarizes the given transcription text into a shorter version, with the specified style and length.
 
