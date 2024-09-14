@@ -14,7 +14,7 @@ from transcription.transcribe_whisper import transcribe_audio as whisper
 
 if sys.platform == "darwin":
     from transcription.transcribe_mlx import transcribe as mlx
-    from transcription.transcribe_with_lightning_mlx import transcribe as lightning
+    from transcription.lightning_mlx_transcriber import transcribe as lightning
 
 
 def check_os(path, filename):

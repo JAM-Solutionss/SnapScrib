@@ -5,8 +5,8 @@ import sys
 
 from requests import get
 
-from transcriber_interface import Transcriber
-from transcription_data import Transcription
+from transcription.transcriber_interface import Transcriber
+from transcription.transcription_data import Transcription
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
@@ -14,10 +14,10 @@ from modules.audio.audio_data import Audio
 
 operating_system = sys.platform
 if operating_system == "darwin":
-    from lightning_whisper_mlx import LightningWhisperMLX, Whisper
+    from lightning_whisper_mlx import LightningWhisperMLX#, Whisper
 else:
     LightningWhisperMLX = None
-    Whisper = None
+    #Whisper = None
 
 
 class LightningMlxTranscriber(Transcriber):
@@ -75,15 +75,15 @@ class LightningMlxTranscriber(Transcriber):
             raise
 
         text = result["text"]
+       
 
         if text is None:
             raise Exception("Transcription failed, no text returned")
 
         LOGGER.info("Transcription result obtained.")
 
-        json_result = self._create_json_result(
-            result
-        )  # _create_json_result needs to be implemented correctly to return the json result
+        #json_content = self._create_json([(segment['start'], segment['end'], segment['text']) for segment in segments])
+        json_result = json.dumps(text)
 
         transcription = Transcription(json_output=json_result)
         return transcription

@@ -3,8 +3,8 @@ import re
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from audio.file_extractor import FileExtractor
-from youtube_extractor import YoutubeExtractor
-from audio_extractor_interface import AudioExtractor
+from audio.youtube_extractor import YoutubeExtractor
+from audio.audio_extractor_interface import AudioExtractor
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
 
@@ -12,10 +12,10 @@ def get_audio_extractor(source: str) -> AudioExtractor:
     """Factory method to get the appropriate AudioExtractor"""
     if is_youtube_link(source): # Needs to be implemented when youtube extractor is implemented
         LOGGER.debug("Selected YoutubeExtractor")
-        return YoutubeExtractor
+        return YoutubeExtractor()
     elif is_supported_audio_file(source):
         LOGGER.debug("Selected FileExtractor")
-        return FileExtractor
+        return FileExtractor()
     else:
         raise ValueError("Invalid audio source")
     
