@@ -1,4 +1,6 @@
 # Common dependencies for all operating systems
+pyside6>=6.6.0
+PyQt6>=6.6.0
 Brotli==1.1.0
 certifi==2024.7.4
 charset-normalizer==3.3.2

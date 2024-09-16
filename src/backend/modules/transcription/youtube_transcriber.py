@@ -2,8 +2,8 @@ import os
 import sys
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptList, Transcript
 from youtube_transcript_api.formatters import JSONFormatter, TextFormatter
-from transcriber_interface import Transcriber
-from transcription_data import Transcription
+from transcription.transcriber_interface import Transcriber
+from transcription.transcription_data import Transcription
 import json
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))

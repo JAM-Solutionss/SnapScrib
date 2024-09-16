@@ -183,3 +183,5 @@ SnapScrib/transcription/.huggingface
 SnapScrib/transcription/mlx_models
 *.json
 *.srt
+.cache/*
+mlx_models/*

@@ -1,6 +1,6 @@
 import yt_dlp
-from audio_data import Audio
-from audio_extractor_interface import AudioExtractor
+from audio.audio_data import Audio
+from audio.audio_extractor_interface import AudioExtractor
 import os
 import sys
 

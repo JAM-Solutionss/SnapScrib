@@ -49,7 +49,7 @@ class LlamaSummarizer(Summarizer):
             if hasattr(response, "choices") and len(response.choices) > 0:
                 LOGGER.info("Summary successful")
                 LOGGER.info(f"Summary: {response.choices[0].message.content}")
-                LOGGER.info(f"Original text: {len(transcription)}")
+                LOGGER.info(f"Original text: {len(transcription.text_output)}")
                 LOGGER.info(
                     f"Words: {len(str(response.choices[0].message.content).split())}"
                 )

@@ -1,10 +1,10 @@
 import sys
 import os
-from lightning_mlx_transcriber import LightningMlxTranscriber
-from mlx_transcriber import MlxTranscriber
-from transcriber_interface import Transcriber
-from whisper_transcriber import WhisperTranscriber
-from youtube_transcriber import YoutubeTranscriber
+from transcription.lightning_mlx_transcriber import LightningMlxTranscriber
+from transcription.mlx_transcriber import MlxTranscriber
+from transcription.transcriber_interface import Transcriber
+from transcription.whisper_transcriber import WhisperTranscriber
+from transcription.youtube_transcriber import YoutubeTranscriber
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from utils.logger_config import LOGGER
@@ -64,7 +64,7 @@ def get_transcriber(transcriber_type: str = None) -> Transcriber:
                 operating_system
                 in transcribers[transcriber_type]["supported_operating_systems"]
             ):
-                return transcribers[transcriber_type]["transcriber_class"]
+                return transcribers[transcriber_type]["transcriber_class"]()
             else:
                 raise ValueError(
                     f"Transcriber '{transcriber_type}' is not supported on this operating system."

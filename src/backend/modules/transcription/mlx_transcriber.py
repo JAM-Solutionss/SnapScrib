@@ -1,8 +1,8 @@
 import os
 import sys
-from transcriber_interface import Transcriber
-from transcription_data import Transcription
-
+from transcription.transcriber_interface import Transcriber
+from transcription.transcription_data import Transcription
+import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from modules.audio.audio_data import Audio
 from utils.logger_config import LOGGER
@@ -33,20 +33,25 @@ class MlxTranscriber(Transcriber):
         LOGGER.info("Starting the transcription process...")
 
         try:
-            result = mlx_whisper.transcribe(audio, word_timestamps=True)
+            result = mlx_whisper.transcribe(audio.audio_file, word_timestamps=True)
             LOGGER.info("Transcription process finished.")
         except Exception as e:
             LOGGER.error(f"Transcription failed with error: {e}")
             raise
-
-        text = " ".join(text for text in result["segments"])
+        print(result["text"])
+        #text = " ".join(text for text in result["segments"])
+        # Extract text from each segment
+        segments = result["segments"]
+        text = " ".join(segment["text"] for segment in segments)
 
         if text is None:
             raise Exception("Transcription failed, no text returned")
 
-        json_result = self._create_json_result(
-            result
-        )  # _create_json_result needs to be implemented correctly to return the json result
+        #json_result = self._create_json_result(
+        #    result
+        #)  # _create_json_result needs to be implemented correctly to return the json result
+        json_content = self._create_json([(segment['start'], segment['end'], segment['text']) for segment in segments])
+        json_result = json.dumps(json_content)
 
         transcription = Transcription(json_output=json_result)
         return transcription

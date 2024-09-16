@@ -13,8 +13,8 @@ from utils.logger_config import LOGGER
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from modules.audio.audio_data import Audio
-from transcription_data import Transcription
-from transcriber_interface import Transcriber
+from transcription.transcription_data import Transcription
+from transcription.transcriber_interface import Transcriber
 
 
 class WhisperTranscriber(Transcriber):
