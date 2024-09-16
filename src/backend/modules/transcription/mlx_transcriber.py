@@ -2,8 +2,6 @@ import os
 import sys
 from transcription.transcriber_interface import Transcriber
 from transcription.transcription_data import Transcription
-import soundfile as sf
-import numpy as np
 import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from modules.audio.audio_data import Audio
