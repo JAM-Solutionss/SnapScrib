@@ -12,7 +12,7 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/JAM-Solutionss/SnapScrib?color=56BEB8">
 </p>
 
-<p align="center">
+<div align="center">
 
   [About](#dart-about) &#xa0; | &#xa0; 
   [Technologies](#rocket-technologies) &#xa0; | &#xa0; 
@@ -21,7 +21,7 @@
   [Project structure](#file_folder-project-structure) &#xa0; | &#xa0; 
   [License](#license)
 
-</p>
+</div>
 
 ## Contributors
 
