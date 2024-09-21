@@ -76,6 +76,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) in
    pip install -r requirements.txt
    ```
 
+<br>
 #### Configuration
 Create a `.env` file in the project directory and add your Groq API key as follows:
 
@@ -155,7 +156,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 If you have any questions or need further assistance, please feel free to contact any of the contributors.
 Happy coding!
 
+<br>
 ---
+
+Made with :heart: by:
 
 <div align="center">
 
