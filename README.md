@@ -23,16 +23,18 @@
 
 </div>
 
+<br>
+
 ## Contributors
 
-<p align="center">
+<div align="center">
 
   [Arved Bahde](https://github.com/arvedb) &#xa0; | &#xa0;
   [Jannis Krija](https://github.com/cipher-shad0w) &#xa0; | &#xa0;
   [Miriam](https://github.com/mirixy) &#xa0; | &#xa0;
   [Tobias](https://github.com/Tatoffel)
 
-</p>
+</div>
 
 <br>
 
@@ -40,6 +42,7 @@
 
 SnapScrib is a Python-based application that extract the audio from the given file, transcribe the audio and summarizes the transcription using the Groq API. Users can customize the transcriber and the summarizer for the summary according to their preferences.
 
+<br>
 
 ## :rocket: Technologies ##
 - **Programming Language:** Python
@@ -52,10 +55,13 @@ SnapScrib is a Python-based application that extract the audio from the given fi
 
 - **UI:** SnapScrib provides a user-friendly interface where users can input the YouTube URL or a audio/video file and choose the transcriber and the summarizer for the summary.
 
+<br>
+
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) installed.
 
+<br>
 
 ## :checkered_flag: Starting
 
@@ -77,6 +83,8 @@ Create a `.env` file in the project directory and add your Groq API key as follo
 GROQ_API_KEY="your_api_key_here"
 ```
 
+<br>
+
 ## Usage
 
 1. **Open the application:** Start the application and navigate to the web interface.
@@ -84,6 +92,8 @@ GROQ_API_KEY="your_api_key_here"
 3. **Select a transcriber and a summarizer:** Choose the appropriate transcriber and summarizer from the available options.
 4. **Start -> summarize:** Press the button to summarize the video/audio.
 5. **Receive Summary:** You can see the summary on the right.
+
+<br>
 
 ## :file_folder: Project Structure ##
 
@@ -133,11 +143,13 @@ GROQ_API_KEY="your_api_key_here"
 - `tests/`: Contains unit and integration tests.
   - `test_youtube_extractor.py`: Tests for the YouTube extractor module.
 
+<br>
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+<br>
 
 ## Collaborate
 If you have any questions or need further assistance, please feel free to contact any of the contributors.
@@ -145,11 +157,14 @@ Happy coding!
 
 ---
 
-Made with :heart: by:
-- [Arved Bahde](https://github.com/arvedb)
-- [Jannis Krija](https://github.com/cipher-shad0w)
-- [Miriam](https://github.com/mirixy)
-- [Tobias](https://github.com/Tatoffel)
+<div align="center">
+
+  [Arved Bahde](https://github.com/arvedb) &#xa0; | &#xa0;
+  [Jannis Krija](https://github.com/cipher-shad0w) &#xa0; | &#xa0;
+  [Miriam](https://github.com/mirixy) &#xa0; | &#xa0;
+  [Tobias](https://github.com/Tatoffel)
+
+</div>
 
 &#xa0;
 
