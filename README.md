@@ -13,21 +13,25 @@
 </p>
 
 <p align="center">
+
   [About](#dart-about) &#xa0; | &#xa0; 
   [Technologies](#rocket-technologies) &#xa0; | &#xa0; 
   [Requirements](#white_check_mark-requirements) &#xa0; | &#xa0; 
   [Starting](#checkered_flag-starting) &#xa0; | &#xa0; 
   [Project structure](#file_folder-project-structure) &#xa0; | &#xa0; 
   [License](#license)
+
 </p>
 
 ## Contributors
 
 <p align="center">
+
   [Arved Bahde](https://github.com/arvedb) &#xa0; | &#xa0;
   [Jannis Krija](https://github.com/cipher-shad0w) &#xa0; | &#xa0;
   [Miriam](https://github.com/mirixy) &#xa0; | &#xa0;
-  [Tobias] (https://github.com/Tatoffel)
+  [Tobias](https://github.com/Tatoffel)
+
 </p>
 
 <br>
@@ -145,7 +149,7 @@ Made with :heart: by:
 - [Arved Bahde](https://github.com/arvedb)
 - [Jannis Krija](https://github.com/cipher-shad0w)
 - [Miriam](https://github.com/mirixy)
-- [Tobias] (https://github.com/Tatoffel)
+- [Tobias](https://github.com/Tatoffel)
 
 &#xa0;
 
