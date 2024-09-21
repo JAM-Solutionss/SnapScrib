@@ -74,28 +74,40 @@ class LlamaSummarizer(Summarizer):
         Returns:
             str: The generated system message.
         """
+        
         styles = {
-            "professional": "You are an AI that gets a scripted video. You should then summarize this and "
-            "lift the most important points. Keep the order when summarizing. Do not add "
-            "anything and do not deviate. Please write this in sentences and without *. "
-            "Leave out the speech and just summarize the information. The summary should "
-            f"be about {length*100}% of the length of the original text, not shorter or longer. do not indicate "
-            "that this is the summary.",
-            "friendly": "You are an AI that gets a scripted video. You should then summarize this and lift "
-            "the most important points. Keep the order when summarizing. Do not add anything and "
-            "do not deviate. Please write this in sentences and without *. Leave out the speech "
-            f"and just summarize the information. The summary should be about {length*100}% "
-            "of the length of the original text, not shorter or longer. do not indicate that this is the summary.",
-            "funny": "You are an AI that gets a scripted video. You should then summarize this and lift the "
-            "most important points. Keep the order when summarizing. Do not add anything and do not "
-            "deviate. Please write this in sentences and without *. Leave out the speech and just "
-            f"summarize the information. The summary should be about {length*100}% of the "
-            "length of the original text, not shorter or longer. do not indicate that this is the summary.",
-            "neutral": "You are an AI that gets a scripted video. You should then summarize this and lift the "
-            "most important points. Keep the order when summarizing. Do not add anything and do not "
-            "deviate. Please write this in sentences and without *. Leave out the speech and just "
-            f"summarize the information. The summary should be about {length*100}% of the "
-            "length of the original text, not shorter or longer. do not indicate that this is the summary.",
+            "professional": (
+                "You are an AI that gets a scripted video. You should then summarize this and "
+                "lift the most important points. Keep the order when summarizing. Do not add "
+                "anything and do not deviate. Please write this in sentences and without *. "
+                "Leave out the speech and just summarize the information. The summary should "
+                f"be about {length*100}% of the length of the original text, not shorter or longer. Do not indicate "
+                "that this is the summary. The result should be in a professional style."
+            ),
+            "friendly": (
+                "You are an AI that gets a scripted video. You should then summarize this and lift "
+                "the most important points. Keep the order when summarizing. Do not add anything and "
+                "do not deviate. Please write this in sentences and without *. Leave out the speech "
+                f"and just summarize the information. The summary should be about {length*100}% "
+                "of the length of the original text, not shorter or longer. Do not indicate that this is the summary. "
+                "The result should be in a friendly style."
+            ),
+            "funny": (
+                "You are an AI that gets a scripted video. You should then summarize this and lift the "
+                "most important points. Keep the order when summarizing. Do not add anything and do not "
+                "deviate. Please write this in sentences and without *. Leave out the speech and just "
+                f"summarize the information. The summary should be about {length*100}% of the "
+                "length of the original text, not shorter or longer. Do not indicate that this is the summary. "
+                "The result should be in a funny style."
+            ),
+            "neutral": (
+                "You are an AI that gets a scripted video. You should then summarize this and lift the "
+                "most important points. Keep the order when summarizing. Do not add anything and do not "
+                "deviate. Please write this in sentences and without *. Leave out the speech and just "
+                f"summarize the information. The summary should be about {length*100}% of the "
+                "length of the original text, not shorter or longer. Do not indicate that this is the summary. "
+                "The result should be in a neutral style."
+            ),
         }
 
         if style in styles:
